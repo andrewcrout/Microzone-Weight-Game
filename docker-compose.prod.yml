@@ -1,0 +1,57 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${SQL_SA_PASSWORD}
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+    profiles: ["database"]
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Microzone.SprintManager.Api/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://0.0.0.0:8080
+      ConnectionStrings__DefaultConnection: ${PROD_SQL_CONNECTION_STRING}
+      Jwt__Issuer: ${JWT_ISSUER}
+      Jwt__Audience: ${JWT_AUDIENCE}
+      Jwt__Secret: ${JWT_SECRET}
+      Trello__ApiKey: ${TRELLO_API_KEY}
+      Trello__Token: ${TRELLO_TOKEN}
+      Trello__UseMockData: ${TRELLO_USE_MOCK_DATA}
+      Cors__SpaUrl: https://${PUBLIC_HOSTNAME}
+    depends_on:
+      - sqlserver
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/sprint-manager-spa/Dockerfile
+
+  nginx:
+    image: nginx:1.27-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/nginx/prod.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./deploy/certbot/www:/var/www/certbot
+      - ./deploy/certbot/conf:/etc/letsencrypt
+    depends_on:
+      - api
+      - frontend
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./deploy/certbot/www:/var/www/certbot
+      - ./deploy/certbot/conf:/etc/letsencrypt
+      - ./deploy/scripts/renew-certbot.sh:/renew-certbot.sh:ro
+    entrypoint: /bin/sh
+    command: -c "trap exit TERM; while :; do /renew-certbot.sh; sleep 12h & wait $${!}; done"
+
+volumes:
+  sqlserver-data:

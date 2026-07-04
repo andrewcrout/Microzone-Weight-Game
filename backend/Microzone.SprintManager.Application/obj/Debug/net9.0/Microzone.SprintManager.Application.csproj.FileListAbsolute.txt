@@ -1,0 +1,16 @@
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\bin\Debug\net9.0\Microzone.SprintManager.Application.deps.json
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\bin\Debug\net9.0\Microzone.SprintManager.Application.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\bin\Debug\net9.0\Microzone.SprintManager.Application.pdb
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\bin\Debug\net9.0\Microzone.SprintManager.Domain.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\bin\Debug\net9.0\Microzone.SprintManager.Domain.pdb
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\obj\Debug\net9.0\Microzone.SprintManager.Application.csproj.AssemblyReference.cache
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\obj\Debug\net9.0\Microzone.SprintManager.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\obj\Debug\net9.0\Microzone.SprintManager.Application.AssemblyInfoInputs.cache
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\obj\Debug\net9.0\Microzone.SprintManager.Application.AssemblyInfo.cs
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\obj\Debug\net9.0\Microzone.SprintManager.Application.csproj.CoreCompileInputs.cache
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\obj\Debug\net9.0\Microzone.SprintManager.Application.sourcelink.json
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\obj\Debug\net9.0\Microzon.54AF57EC.Up2Date
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\obj\Debug\net9.0\Microzone.SprintManager.Application.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\obj\Debug\net9.0\refint\Microzone.SprintManager.Application.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\obj\Debug\net9.0\Microzone.SprintManager.Application.pdb
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Application\obj\Debug\net9.0\ref\Microzone.SprintManager.Application.dll

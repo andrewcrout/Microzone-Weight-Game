@@ -1,0 +1,47 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: ${SQL_SA_PASSWORD}
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+
+  api:
+    image: mcr.microsoft.com/dotnet/sdk:9.0
+    working_dir: /workspace/backend/Microzone.SprintManager.Api
+    command: sh -c "dotnet restore && dotnet watch run --urls http://0.0.0.0:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__DefaultConnection: Server=sqlserver,1433;Database=MicrozoneSprintManager;User Id=sa;Password=${SQL_SA_PASSWORD};TrustServerCertificate=True
+      Jwt__Issuer: ${JWT_ISSUER}
+      Jwt__Audience: ${JWT_AUDIENCE}
+      Jwt__Secret: ${JWT_SECRET}
+      Trello__ApiKey: ${TRELLO_API_KEY}
+      Trello__Token: ${TRELLO_TOKEN}
+      Trello__UseMockData: ${TRELLO_USE_MOCK_DATA}
+      Cors__SpaUrl: http://localhost:4200
+    ports:
+      - "5000:8080"
+    volumes:
+      - ./:/workspace
+    depends_on:
+      - sqlserver
+
+  frontend:
+    image: node:20-alpine
+    working_dir: /workspace/frontend/sprint-manager-spa
+    command: sh -c "npm install && npx ng serve --host 0.0.0.0 --port 4200"
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./:/workspace
+      - frontend-node-modules:/workspace/frontend/sprint-manager-spa/node_modules
+    depends_on:
+      - api
+
+volumes:
+  sqlserver-data:
+  frontend-node-modules:

@@ -1,0 +1,10 @@
+namespace Microzone.SprintManager.Infrastructure.Options;
+
+public sealed class TrelloOptions
+{
+    public const string SectionName = "Trello";
+
+    public string ApiKey { get; set; } = string.Empty;
+    public string Token { get; set; } = string.Empty;
+    public bool UseMockData { get; set; } = true;
+}

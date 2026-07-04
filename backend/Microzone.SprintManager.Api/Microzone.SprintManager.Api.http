@@ -1,0 +1,6 @@
+@Microzone.SprintManager.Api_HostAddress = http://localhost:5267
+
+GET {{Microzone.SprintManager.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

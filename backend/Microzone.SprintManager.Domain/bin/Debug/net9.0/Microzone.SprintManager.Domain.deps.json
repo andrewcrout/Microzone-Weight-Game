@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "Microzone.SprintManager.Domain/1.0.0": {
+        "runtime": {
+          "Microzone.SprintManager.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Microzone.SprintManager.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

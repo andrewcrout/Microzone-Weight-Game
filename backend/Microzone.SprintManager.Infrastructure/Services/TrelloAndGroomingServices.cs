@@ -1,0 +1,294 @@
+using System.Net.Http.Json;
+using Microzone.SprintManager.Application.DTOs;
+using Microzone.SprintManager.Application.Interfaces;
+using Microzone.SprintManager.Domain.Entities;
+using Microzone.SprintManager.Infrastructure.Data;
+using Microzone.SprintManager.Infrastructure.Options;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
+namespace Microzone.SprintManager.Infrastructure.Services;
+
+public sealed class TrelloIntegrationService(
+    SprintManagerDbContext dbContext,
+    IHttpClientFactory httpClientFactory,
+    IOptions<TrelloOptions> options) : ITrelloIntegrationService
+{
+    private readonly TrelloOptions _options = options.Value;
+
+    public async Task<IReadOnlyList<TrelloBoardConfigDto>> GetBoardConfigsAsync(CancellationToken cancellationToken = default) =>
+        await dbContext.TrelloBoardConfigs.OrderBy(x => x.Name)
+            .Select(x => new TrelloBoardConfigDto(x.Id, x.Name, x.BoardId, x.BaseUrl, x.IsEnabled, x.SystemName))
+            .ToListAsync(cancellationToken);
+
+    public async Task<TrelloBoardConfigDto> SaveBoardConfigAsync(SaveTrelloBoardConfigRequest request, CancellationToken cancellationToken = default)
+    {
+        var entity = new TrelloBoardConfig
+        {
+            Name = request.Name,
+            BoardId = request.BoardId,
+            BaseUrl = request.BaseUrl,
+            IsEnabled = request.IsEnabled,
+            SystemName = request.SystemName
+        };
+        dbContext.TrelloBoardConfigs.Add(entity);
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return new TrelloBoardConfigDto(entity.Id, entity.Name, entity.BoardId, entity.BaseUrl, entity.IsEnabled, entity.SystemName);
+    }
+
+    public async Task<int> GatherSprintTicketsAsync(GatherSprintTicketsRequest request, CancellationToken cancellationToken = default)
+    {
+        var sprint = await dbContext.Sprints.Include(x => x.Tickets).FirstAsync(x => x.Id == request.SprintId, cancellationToken);
+        sprint.Label = request.Label;
+
+        var boardConfigs = await dbContext.TrelloBoardConfigs.Where(x => x.IsEnabled).ToListAsync(cancellationToken);
+        var cards = request.UseMockData || _options.UseMockData || string.IsNullOrWhiteSpace(_options.ApiKey)
+            ? GetMockCards(request.Label)
+            : await GetLiveCardsAsync(boardConfigs, request.Label, cancellationToken);
+
+        foreach (var existing in sprint.Tickets.ToList())
+        {
+            dbContext.SprintTickets.Remove(existing);
+        }
+
+        foreach (var config in boardConfigs.DefaultIfEmpty(new TrelloBoardConfig { SystemName = "PROMAN GENERAL" }))
+        {
+            foreach (var card in cards.Where(x => x.BoardId == config.BoardId || cards.Count == 1))
+            {
+                dbContext.SprintTickets.Add(MapImportedCard(card, sprint.Id, config.SystemName ?? "PROMAN GENERAL"));
+            }
+        }
+
+        dbContext.TrelloImportRuns.Add(new TrelloImportRun
+        {
+            SprintId = sprint.Id,
+            ImportedTicketCount = cards.Count,
+            Source = request.UseMockData || _options.UseMockData ? "Mock" : "Trello",
+            UsedMockData = request.UseMockData || _options.UseMockData
+        });
+
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return cards.Count;
+    }
+
+    public SprintTicket MapImportedCard(TrelloCardImportDto card, int sprintId, string systemName)
+    {
+        var ticket = new SprintTicket
+        {
+            SprintId = sprintId,
+            TrelloCardId = card.CardId,
+            BoardId = card.BoardId,
+            ListId = card.ListId,
+            Title = card.Title,
+            Description = card.Description,
+            ShortUrl = card.ShortUrl,
+            SystemName = systemName,
+            DueDateUtc = card.DueDateUtc,
+            LastActivityAtUtc = card.LastActivityAtUtc,
+            GroomingStatus = "Pending"
+        };
+
+        ticket.Labels = card.Labels.Select(label => new SprintTicketLabel { Name = label, Color = "blue" }).ToList();
+        ticket.Comments = card.Comments.Select(comment => new SprintTicketComment { AuthorName = comment.AuthorName, Text = comment.Text }).ToList();
+        ticket.Assignees = card.Members.Select(member => new SprintTicketAssignee
+        {
+            TrelloMemberId = member.MemberId,
+            DisplayName = member.DisplayName,
+            Email = member.Email
+        }).ToList();
+
+        return ticket;
+    }
+
+    private async Task<List<TrelloCardImportDto>> GetLiveCardsAsync(IReadOnlyList<TrelloBoardConfig> boardConfigs, string label, CancellationToken cancellationToken)
+    {
+        var httpClient = httpClientFactory.CreateClient("Trello");
+        var result = new List<TrelloCardImportDto>();
+
+        foreach (var board in boardConfigs)
+        {
+            var url = $"{board.BaseUrl}/boards/{board.BoardId}/cards?key={_options.ApiKey}&token={_options.Token}&members=true&actions=commentCard";
+            var cards = await httpClient.GetFromJsonAsync<List<TrelloApiCard>>(url, cancellationToken) ?? [];
+
+            result.AddRange(cards
+                .Where(card => card.Labels.Any(x => string.Equals(x.Name, label, StringComparison.OrdinalIgnoreCase)))
+                .Select(card => new TrelloCardImportDto(
+                    card.Id,
+                    board.BoardId,
+                    card.IdList,
+                    card.Name,
+                    card.Desc,
+                    card.ShortUrl,
+                    card.Labels.Select(x => x.Name).ToArray(),
+                    card.Actions.Select(x => new TrelloCommentDto(x.MemberCreator?.FullName ?? "Unknown", x.Data?.Text ?? string.Empty)).ToArray(),
+                    card.Members.Select(x => new TrelloMemberDto(x.Id, x.FullName, x.Email)).ToArray(),
+                    card.Due,
+                    card.DateLastActivity)));
+        }
+
+        return result;
+    }
+
+    private static List<TrelloCardImportDto> GetMockCards(string label) =>
+    [
+        new(
+            "card-1",
+            "mock-board",
+            "list-1",
+            "Sprint login hardening",
+            $"Imported from mock board for label {label}",
+            "https://trello.example/card-1",
+            [label, "Security"],
+            [new TrelloCommentDto("Sprint Admin", "Please review auth edge cases.")],
+            [new TrelloMemberDto("member-1", "Sprint Admin", "admin@microzone.local")],
+            DateTime.UtcNow.AddDays(3),
+            DateTime.UtcNow),
+        new(
+            "card-2",
+            "mock-board",
+            "list-2",
+            "Trello board sync polish",
+            "Improve import feedback and progress handling.",
+            "https://trello.example/card-2",
+            [label, "Backend"],
+            [],
+            [new TrelloMemberDto("member-2", "Developer One", "dev1@microzone.local")],
+            DateTime.UtcNow.AddDays(5),
+            DateTime.UtcNow)
+    ];
+
+    private sealed record TrelloApiCard(string Id, string IdList, string Name, string Desc, string ShortUrl, List<TrelloApiLabel> Labels, List<TrelloApiAction> Actions, List<TrelloApiMember> Members, DateTime? Due, DateTime DateLastActivity);
+    private sealed record TrelloApiLabel(string Name);
+    private sealed record TrelloApiAction(TrelloApiActionData? Data, TrelloApiMember? MemberCreator);
+    private sealed record TrelloApiActionData(string? Text);
+    private sealed record TrelloApiMember(string Id, string FullName, string? Email);
+}
+
+public sealed class VotingService(SprintManagerDbContext dbContext) : IVotingService
+{
+    public async Task SubmitVoteAsync(VoteRequest request, int userId, CancellationToken cancellationToken = default)
+    {
+        var existing = await dbContext.GroomingVotes
+            .FirstOrDefaultAsync(x => x.GroomingSessionId == request.SessionId && x.SprintTicketId == request.TicketId && x.UserId == userId, cancellationToken);
+
+        if (existing is null)
+        {
+            dbContext.GroomingVotes.Add(new GroomingVote
+            {
+                GroomingSessionId = request.SessionId,
+                SprintTicketId = request.TicketId,
+                UserId = userId,
+                WeightValue = request.WeightValue
+            });
+        }
+        else
+        {
+            existing.WeightValue = request.WeightValue;
+            existing.UpdatedAtUtc = DateTime.UtcNow;
+        }
+
+        await dbContext.SaveChangesAsync(cancellationToken);
+    }
+
+    public VoteResolutionDto ResolveVotes(IEnumerable<int> votes)
+    {
+        var grouped = votes.GroupBy(x => x).OrderByDescending(x => x.Count()).ThenBy(x => x.Key).ToList();
+        if (grouped.Count == 0)
+            return new VoteResolutionDto(false, null, []);
+
+        var tie = grouped.Count > 1 && grouped[0].Count() == grouped[1].Count();
+        return new VoteResolutionDto(tie, tie ? null : grouped[0].Key, grouped.Select(x => x.Key).ToArray());
+    }
+}
+
+public sealed class GroomingSessionService(
+    SprintManagerDbContext dbContext,
+    IVotingService votingService) : IGroomingSessionService
+{
+    public async Task<GroomingSessionDto> StartSessionAsync(int sprintId, int adminUserId, CancellationToken cancellationToken = default)
+    {
+        var session = new GroomingSession { SprintId = sprintId, Status = "Lobby", CurrentTicketIndex = 0 };
+        dbContext.GroomingSessions.Add(session);
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return new GroomingSessionDto(session.Id, session.SprintId, session.Status, session.CurrentTicketIndex, session.VotesRevealed);
+    }
+
+    public async Task<GroomingLobbyDto> JoinLobbyAsync(int sessionId, int userId, string displayName, bool isAdmin, string connectionId, CancellationToken cancellationToken = default)
+    {
+        var participant = await dbContext.GroomingParticipants.FirstOrDefaultAsync(x => x.GroomingSessionId == sessionId && x.UserId == userId, cancellationToken);
+        if (participant is null)
+        {
+            dbContext.GroomingParticipants.Add(new GroomingParticipant
+            {
+                GroomingSessionId = sessionId,
+                UserId = userId,
+                ConnectionId = connectionId,
+                IsAdmin = isAdmin
+            });
+        }
+        else
+        {
+            participant.ConnectionId = connectionId;
+        }
+
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return await BuildLobbyAsync(sessionId, cancellationToken);
+    }
+
+    public async Task<GroomingLobbyDto> SetReadyAsync(int sessionId, int userId, bool isReady, CancellationToken cancellationToken = default)
+    {
+        var participant = await dbContext.GroomingParticipants.FirstAsync(x => x.GroomingSessionId == sessionId && x.UserId == userId, cancellationToken);
+        participant.IsReady = isReady;
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return await BuildLobbyAsync(sessionId, cancellationToken);
+    }
+
+    public async Task<RevealVotesDto> RevealVotesAsync(int sessionId, int ticketId, CancellationToken cancellationToken = default)
+    {
+        var session = await dbContext.GroomingSessions.FirstAsync(x => x.Id == sessionId, cancellationToken);
+        session.VotesRevealed = true;
+
+        var votes = await dbContext.GroomingVotes
+            .Where(x => x.GroomingSessionId == sessionId && x.SprintTicketId == ticketId)
+            .Include(x => x.User)
+            .ToListAsync(cancellationToken);
+
+        var resolution = votingService.ResolveVotes(votes.Select(x => x.WeightValue));
+        await dbContext.SaveChangesAsync(cancellationToken);
+
+        return new RevealVotesDto(
+            ticketId,
+            votes.Select(x => new GroomingVoteDto(x.UserId, x.User.DisplayName, x.WeightValue)).ToArray(),
+            resolution.IsTie,
+            resolution.MajorityWeight);
+    }
+
+    public async Task AdvanceAsync(int sessionId, int ticketId, int finalWeight, CancellationToken cancellationToken = default)
+    {
+        var session = await dbContext.GroomingSessions.FirstAsync(x => x.Id == sessionId, cancellationToken);
+        var ticket = await dbContext.SprintTickets.FirstAsync(x => x.Id == ticketId, cancellationToken);
+        var weightCard = await dbContext.WeightCards.FirstAsync(x => x.WeightValue == finalWeight, cancellationToken);
+
+        ticket.WeightValue = finalWeight;
+        ticket.TimeScore = weightCard.TimeScore;
+        ticket.GroomingStatus = "Groomed";
+        session.CurrentTicketIndex += 1;
+        session.VotesRevealed = false;
+
+        var remaining = await dbContext.SprintTickets.CountAsync(x => x.SprintId == ticket.SprintId && !x.WeightValue.HasValue, cancellationToken);
+        if (remaining == 0)
+            session.Status = "Completed";
+
+        await dbContext.SaveChangesAsync(cancellationToken);
+    }
+
+    private async Task<GroomingLobbyDto> BuildLobbyAsync(int sessionId, CancellationToken cancellationToken)
+    {
+        var users = await dbContext.GroomingParticipants
+            .Where(x => x.GroomingSessionId == sessionId)
+            .Join(dbContext.Users, participant => participant.UserId, user => user.Id, (participant, user) => new GroomingParticipantDto(user.Id, user.DisplayName, participant.IsReady, participant.IsAdmin))
+            .ToListAsync(cancellationToken);
+
+        return new GroomingLobbyDto(sessionId, users, users.Count > 0 && users.Where(x => !x.IsAdmin).All(x => x.IsReady));
+    }
+}

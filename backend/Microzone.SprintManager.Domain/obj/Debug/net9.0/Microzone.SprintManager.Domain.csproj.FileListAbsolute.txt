@@ -1,0 +1,12 @@
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\bin\Debug\net9.0\Microzone.SprintManager.Domain.deps.json
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\bin\Debug\net9.0\Microzone.SprintManager.Domain.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\bin\Debug\net9.0\Microzone.SprintManager.Domain.pdb
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\obj\Debug\net9.0\Microzone.SprintManager.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\obj\Debug\net9.0\Microzone.SprintManager.Domain.AssemblyInfoInputs.cache
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\obj\Debug\net9.0\Microzone.SprintManager.Domain.AssemblyInfo.cs
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\obj\Debug\net9.0\Microzone.SprintManager.Domain.csproj.CoreCompileInputs.cache
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\obj\Debug\net9.0\Microzone.SprintManager.Domain.sourcelink.json
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\obj\Debug\net9.0\Microzone.SprintManager.Domain.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\obj\Debug\net9.0\refint\Microzone.SprintManager.Domain.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\obj\Debug\net9.0\Microzone.SprintManager.Domain.pdb
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Domain\obj\Debug\net9.0\ref\Microzone.SprintManager.Domain.dll
