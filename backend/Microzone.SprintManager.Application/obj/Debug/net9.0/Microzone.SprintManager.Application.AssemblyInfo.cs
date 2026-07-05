@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Microzone.SprintManager.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b21e7b04b10f1133abc995e2749680985f3423a0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cb328b28ed7db9551c24fbc9e6af04971c495daa")]
 [assembly: System.Reflection.AssemblyProductAttribute("Microzone.SprintManager.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Microzone.SprintManager.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

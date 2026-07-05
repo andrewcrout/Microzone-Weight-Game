@@ -19,6 +19,7 @@ describe('WeightCardComponent', () => {
       element: 'Fire',
       line: 'This one brings heat.'
     });
+    fixture.componentRef.setInput('faceUp', true);
     fixture.detectChanges();
   });
 

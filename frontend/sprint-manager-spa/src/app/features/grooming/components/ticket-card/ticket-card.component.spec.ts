@@ -21,9 +21,12 @@ describe('TicketCardComponent', () => {
       weightValue: 4,
       timeScore: 2,
       groomingStatus: 'Pending',
+      workStatus: 'NotStarted',
       labels: ['Sprint'],
-      assignees: ['Dev']
+      assignees: ['Dev'],
+      comments: ['Looks good']
     });
+    fixture.componentRef.setInput('comments', ['Looks good']);
     fixture.detectChanges();
   });
 
