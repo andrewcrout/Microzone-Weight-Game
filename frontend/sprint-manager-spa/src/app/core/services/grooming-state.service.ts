@@ -7,6 +7,7 @@ import { GroomingLobby, GroomingSession, RevealVotes } from '../../shared/models
 export class GroomingStateService {
   private connection?: signalR.HubConnection;
   private countdownTimer: ReturnType<typeof setInterval> | null = null;
+  private pendingReveal: RevealVotes | null = null;
 
   private readonly lobbyState = signal<GroomingLobby | null>(null);
   private readonly sessionState = signal<GroomingSession | null>(null);
@@ -26,8 +27,8 @@ export class GroomingStateService {
         .build();
 
       this.connection.on('LobbyUpdated', (lobby: GroomingLobby) => this.lobbyState.set(lobby));
-      this.connection.on('SessionUpdated', (session: GroomingSession) => this.sessionState.set(session));
-      this.connection.on('VotesRevealed', (reveal: RevealVotes) => this.revealState.set(reveal));
+      this.connection.on('SessionUpdated', (session: GroomingSession) => this.handleSessionUpdated(session));
+      this.connection.on('VotesRevealed', (reveal: RevealVotes) => this.handleVotesRevealed(reveal));
       this.connection.on('CountdownStarted', (seconds: number) => this.startCountdown(seconds));
 
       await this.connection.start();
@@ -57,11 +58,34 @@ export class GroomingStateService {
   }
 
   setSession(session: GroomingSession) {
-    this.sessionState.set(session);
+    this.handleSessionUpdated(session);
   }
 
   clearReveal() {
+    this.pendingReveal = null;
     this.revealState.set(null);
+  }
+
+  private handleSessionUpdated(session: GroomingSession) {
+    const previous = this.sessionState();
+    this.sessionState.set(session);
+
+    const ticketAdvanced = previous !== null && previous.currentTicketIndex !== session.currentTicketIndex;
+    const revealClosed = previous !== null && previous.votesRevealed && !session.votesRevealed;
+
+    if (ticketAdvanced || revealClosed || session.status === 'Completed') {
+      this.resetRevealCycle();
+    }
+  }
+
+  private handleVotesRevealed(reveal: RevealVotes) {
+    this.pendingReveal = reveal;
+    this.revealState.set(null);
+
+    if (this.countdownState() === null) {
+      this.revealState.set(reveal);
+      this.pendingReveal = null;
+    }
   }
 
   private startCountdown(seconds: number) {
@@ -69,6 +93,7 @@ export class GroomingStateService {
       clearInterval(this.countdownTimer);
     }
 
+    this.revealState.set(null);
     this.countdownState.set(seconds);
     this.countdownTimer = setInterval(() => {
       const next = (this.countdownState() ?? 1) - 1;
@@ -78,10 +103,27 @@ export class GroomingStateService {
           clearInterval(this.countdownTimer);
           this.countdownTimer = null;
         }
+
+        if (this.pendingReveal) {
+          this.revealState.set(this.pendingReveal);
+          this.pendingReveal = null;
+        }
+
         return;
       }
 
       this.countdownState.set(next);
     }, 1000);
+  }
+
+  private resetRevealCycle() {
+    this.pendingReveal = null;
+    this.revealState.set(null);
+    this.countdownState.set(null);
+
+    if (this.countdownTimer) {
+      clearInterval(this.countdownTimer);
+      this.countdownTimer = null;
+    }
   }
 }
