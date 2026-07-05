@@ -38,12 +38,11 @@ Internal sprint planning and grooming MVP for importing Trello cards by sprint l
 - The first version favors a working internal MVP with seed data, mock Trello fallback, and a manageable service layer over deeper workflow customization.
 - Production SQL can be internal SQL Server or an external SQL connection string via `PROD_SQL_CONNECTION_STRING`.
 
-## Default admin login
+## First account bootstrap
 
-- Email: `admin@microzone.local`
-- Password: `Admin123!`
-
-Change that immediately outside local development.
+- Use the sign-up flow on the login page to create the first account.
+- The first registered account is granted the `Admin` role automatically.
+- Later sign-ups default to `Developer`.
 
 ## Local development
 
@@ -60,6 +59,10 @@ docker compose -f docker-compose.dev.yml up --build
 - API: [http://localhost:5000](http://localhost:5000)
 - Swagger: [http://localhost:5000/swagger](http://localhost:5000/swagger)
 - SQL Server: `localhost,1433`
+
+If you change `SQL_SA_PASSWORD` after the SQL container has already initialized, the existing `sqlserver-data` volume keeps the old password. Either rotate the `sa` password inside SQL Server or recreate that volume for a clean local reset.
+
+If your password or SQL connection string contains `$`, escape each literal dollar sign as `$$` in `.env` so Docker Compose does not treat it as variable interpolation.
 
 ## Production Docker setup
 
@@ -129,7 +132,7 @@ dotnet tool run dotnet-ef migrations add YourMigrationName --project .\Microzone
 
 ## Manual QA
 
-- Log in with the seeded admin user.
+- Sign up the first admin user if the database is empty, then log in.
 - Verify dashboard metrics load.
 - Add a Trello board config and run a mock import.
 - Open a sprint and confirm ticket search/filter basics work.

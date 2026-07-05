@@ -1,185 +1,370 @@
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\appsettings.Development.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\appsettings.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Api.staticwebassets.endpoints.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Api.exe
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Api.deps.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Api.runtimeconfig.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Api.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Api.pdb
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Azure.Core.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Azure.Identity.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Bcl.AsyncInterfaces.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Bcl.Cryptography.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Data.SqlClient.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Binder.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Http.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Identity.Stores.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Identity.Client.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Abstractions.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Logging.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.OpenApi.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.SqlServer.Server.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.ClientModel.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Drawing.Common.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Memory.Data.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Runtime.Caching.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Security.Permissions.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Windows.Extensions.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Application.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Domain.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Infrastructure.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Application.pdb
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Infrastructure.pdb
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microzone.SprintManager.Domain.pdb
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzone.SprintManager.Api.csproj.AssemblyReference.cache
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\rpswa.dswa.cache.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzone.SprintManager.Api.GeneratedMSBuildEditorConfig.editorconfig
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzone.SprintManager.Api.AssemblyInfoInputs.cache
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzone.SprintManager.Api.AssemblyInfo.cs
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzone.SprintManager.Api.csproj.CoreCompileInputs.cache
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzone.SprintManager.Api.MvcApplicationPartsAssemblyInfo.cs
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzone.SprintManager.Api.MvcApplicationPartsAssemblyInfo.cache
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzone.SprintManager.Api.sourcelink.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\rjimswa.dswa.cache.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\scopedcss\bundle\Microzone.SprintManager.Api.styles.css
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\staticwebassets.build.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\staticwebassets.build.json.cache
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\staticwebassets.development.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzon.D51ECBD0.Up2Date
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzone.SprintManager.Api.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\refint\Microzone.SprintManager.Api.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzone.SprintManager.Api.pdb
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\Microzone.SprintManager.Api.genruntimeconfig.cache
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\obj\Debug\net9.0\ref\Microzone.SprintManager.Api.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Humanizer.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Build.Locator.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.CodeAnalysis.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\Mono.TextTemplating.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.CodeDom.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Composition.AttributedModel.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Composition.Convention.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Composition.Hosting.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Composition.Runtime.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\System.Composition.TypedParts.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
-C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Api\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/appsettings.Development.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/appsettings.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api.staticwebassets.endpoints.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api.exe
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api.deps.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api.runtimeconfig.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api.pdb
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Azure.Core.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Azure.Identity.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.AspNetCore.OpenApi.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Bcl.AsyncInterfaces.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Bcl.Cryptography.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Data.SqlClient.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Relational.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Caching.Abstractions.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Caching.Memory.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Configuration.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Configuration.Binder.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Diagnostics.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Http.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Identity.Core.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Identity.Stores.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Logging.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Logging.Abstractions.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Options.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Primitives.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Identity.Client.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Identity.Client.Extensions.Msal.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.OpenApi.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.SqlServer.Server.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Win32.SystemEvents.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.ClientModel.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Configuration.ConfigurationManager.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Drawing.Common.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Memory.Data.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Runtime.Caching.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Security.Cryptography.ProtectedData.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Security.Permissions.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Windows.Extensions.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/unix/lib/net6.0/Microsoft.Data.SqlClient.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/Microsoft.Data.SqlClient.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Application.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Domain.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Infrastructure.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Application.pdb
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Infrastructure.pdb
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Domain.pdb
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.csproj.AssemblyReference.cache
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/rpswa.dswa.cache.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.AssemblyInfoInputs.cache
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.AssemblyInfo.cs
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.csproj.CoreCompileInputs.cache
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.MvcApplicationPartsAssemblyInfo.cs
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.MvcApplicationPartsAssemblyInfo.cache
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.sourcelink.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/rjimswa.dswa.cache.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/rjsmrazor.dswa.cache.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/scopedcss/bundle/Microzone.SprintManager.Api.styles.css
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/staticwebassets.build.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/staticwebassets.build.json.cache
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/staticwebassets.development.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzon.D51ECBD0.Up2Date
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/refint/Microzone.SprintManager.Api.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.pdb
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.genruntimeconfig.cache
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/ref/Microzone.SprintManager.Api.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Humanizer.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Build.Locator.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.CSharp.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.Workspaces.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Design.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.DependencyModel.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Mono.TextTemplating.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.CodeDom.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Composition.AttributedModel.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Composition.Convention.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Composition.Hosting.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Composition.Runtime.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Composition.TypedParts.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/cs/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/de/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/es/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/fr/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/it/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ja/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ko/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pl/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pt-BR/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ru/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/cs/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/de/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/es/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/fr/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/it/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ja/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ko/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pl/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ru/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/de/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/es/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/fr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/it/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ja/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ko/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pl/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pt-BR/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ru/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/de/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/es/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/it/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ja/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ko/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pl/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pt-BR/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ru/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/cs/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/de/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/es/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/fr/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/it/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ja/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ko/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pl/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pt-BR/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ru/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/appsettings.Development.json
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/appsettings.json
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api.staticwebassets.endpoints.json
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api.deps.json
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api.runtimeconfig.json
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Api.pdb
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Azure.Core.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Azure.Identity.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Humanizer.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.AspNetCore.OpenApi.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Bcl.AsyncInterfaces.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Bcl.Cryptography.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Build.Locator.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.CSharp.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.Workspaces.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Data.SqlClient.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Abstractions.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Design.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.Relational.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.SqlServer.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Caching.Abstractions.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Caching.Memory.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Configuration.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Configuration.Binder.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.DependencyModel.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Diagnostics.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Http.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Identity.Core.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Identity.Stores.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Logging.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Logging.Abstractions.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Options.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Extensions.Primitives.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Identity.Client.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Identity.Client.Extensions.Msal.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.OpenApi.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.SqlServer.Server.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microsoft.Win32.SystemEvents.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Mono.TextTemplating.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.ClientModel.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.CodeDom.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Composition.AttributedModel.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Composition.Convention.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Composition.Hosting.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Composition.Runtime.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Composition.TypedParts.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Configuration.ConfigurationManager.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Drawing.Common.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Memory.Data.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Runtime.Caching.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Security.Cryptography.ProtectedData.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Security.Permissions.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/System.Windows.Extensions.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/cs/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/de/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/es/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/fr/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/it/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ja/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ko/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pl/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pt-BR/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ru/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/cs/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/de/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/es/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/fr/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/it/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ja/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ko/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pl/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pt-BR/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ru/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/cs/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/de/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/es/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/fr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/it/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ja/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ko/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pl/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pt-BR/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ru/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/cs/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/de/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/es/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/fr/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/it/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ja/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ko/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pl/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pt-BR/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ru/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/cs/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/de/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/es/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/fr/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/it/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ja/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ko/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pl/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/pt-BR/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/ru/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/tr/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hans/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/unix/lib/net6.0/Microsoft.Data.SqlClient.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/Microsoft.Data.SqlClient.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win-arm/native/Microsoft.Data.SqlClient.SNI.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Runtime.Caching.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Application.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Domain.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Infrastructure.dll
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Application.pdb
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Infrastructure.pdb
+/workspace/backend/Microzone.SprintManager.Api/bin/Debug/net9.0/Microzone.SprintManager.Domain.pdb
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.csproj.AssemblyReference.cache
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/rpswa.dswa.cache.json
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.GeneratedMSBuildEditorConfig.editorconfig
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.AssemblyInfoInputs.cache
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.AssemblyInfo.cs
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.csproj.CoreCompileInputs.cache
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.MvcApplicationPartsAssemblyInfo.cs
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.MvcApplicationPartsAssemblyInfo.cache
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.sourcelink.json
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/rjimswa.dswa.cache.json
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/rjsmrazor.dswa.cache.json
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/rjsmcshtml.dswa.cache.json
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/scopedcss/bundle/Microzone.SprintManager.Api.styles.css
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/staticwebassets.build.json
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/staticwebassets.build.json.cache
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/staticwebassets.development.json
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/staticwebassets.build.endpoints.json
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzon.D51ECBD0.Up2Date
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.dll
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/refint/Microzone.SprintManager.Api.dll
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.pdb
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/Microzone.SprintManager.Api.genruntimeconfig.cache
+/workspace/backend/Microzone.SprintManager.Api/obj/Debug/net9.0/ref/Microzone.SprintManager.Api.dll

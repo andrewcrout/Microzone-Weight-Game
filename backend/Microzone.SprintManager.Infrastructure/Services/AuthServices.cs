@@ -82,6 +82,35 @@ public sealed class AuthService(
         var roles = user.UserRoles.Select(x => x.Role.Name).ToArray();
         return jwtTokenService.Create(user, roles);
     }
+
+    public async Task<AuthResponse> RegisterAsync(RegisterRequest request, CancellationToken cancellationToken = default)
+    {
+        var normalizedEmail = request.Email.Trim();
+        var existingUser = await dbContext.Users.AnyAsync(x => x.Email == normalizedEmail, cancellationToken);
+        if (existingUser)
+        {
+            throw new InvalidOperationException("A user with that email already exists.");
+        }
+
+        var isBootstrapAdmin = !await dbContext.Users.AnyAsync(cancellationToken);
+        var roleName = isBootstrapAdmin ? "Admin" : "Developer";
+
+        var user = new User
+        {
+            Email = normalizedEmail,
+            DisplayName = request.DisplayName.Trim()
+        };
+        user.PasswordHash = passwordHashService.HashPassword(user, request.Password);
+
+        dbContext.Users.Add(user);
+        await dbContext.SaveChangesAsync(cancellationToken);
+
+        var role = await dbContext.Roles.FirstAsync(x => x.Name == roleName, cancellationToken);
+        dbContext.UserRoles.Add(new UserRole { UserId = user.Id, RoleId = role.Id });
+        await dbContext.SaveChangesAsync(cancellationToken);
+
+        return jwtTokenService.Create(user, [role.Name]);
+    }
 }
 
 public sealed class UserService(SprintManagerDbContext dbContext) : IUserService
@@ -104,34 +133,5 @@ public static class DbSeeder
     public static async Task SeedAsync(SprintManagerDbContext dbContext, IPasswordHashService passwordHashService)
     {
         await dbContext.Database.MigrateAsync();
-
-        if (!await dbContext.Users.AnyAsync())
-        {
-            var admin = new User
-            {
-                Email = SeedData.DefaultAdminEmail,
-                DisplayName = "Sprint Admin"
-            };
-            admin.PasswordHash = passwordHashService.HashPassword(admin, SeedData.DefaultAdminPassword);
-
-            dbContext.Users.Add(admin);
-            await dbContext.SaveChangesAsync();
-
-            var adminRole = await dbContext.Roles.FirstAsync(x => x.Name == "Admin");
-            dbContext.UserRoles.Add(new UserRole { UserId = admin.Id, RoleId = adminRole.Id });
-
-            if (!await dbContext.Sprints.AnyAsync())
-            {
-                dbContext.Sprints.Add(new Sprint
-                {
-                    Name = "Sprint Alpha",
-                    Label = "Sprint Alpha",
-                    Goal = "Imported grooming baseline",
-                    IsActive = true
-                });
-            }
-
-            await dbContext.SaveChangesAsync();
-        }
     }
 }

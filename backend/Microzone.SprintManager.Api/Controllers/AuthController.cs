@@ -16,4 +16,19 @@ public sealed class AuthController(IAuthService authService) : ControllerBase
         var response = await authService.LoginAsync(request, cancellationToken);
         return response is null ? Unauthorized() : Ok(response);
     }
+
+    [HttpPost("register")]
+    [ProducesResponseType<AuthResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status409Conflict)]
+    public async Task<IActionResult> Register([FromBody] RegisterRequest request, CancellationToken cancellationToken)
+    {
+        try
+        {
+            return Ok(await authService.RegisterAsync(request, cancellationToken));
+        }
+        catch (InvalidOperationException exception)
+        {
+            return Conflict(new { message = exception.Message });
+        }
+    }
 }

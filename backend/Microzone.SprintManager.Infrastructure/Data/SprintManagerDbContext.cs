@@ -59,15 +59,20 @@ public sealed class SprintManagerDbContext(DbContextOptions<SprintManagerDbConte
             .HasIndex(x => new { x.GroomingSessionId, x.UserId })
             .IsUnique();
 
-        modelBuilder.Entity<GroomingVote>()
-            .HasIndex(x => new { x.GroomingSessionId, x.SprintTicketId, x.UserId })
-            .IsUnique();
+        modelBuilder.Entity<GroomingVote>(entity =>
+        {
+            entity.HasIndex(x => new { x.GroomingSessionId, x.SprintTicketId, x.UserId })
+                .IsUnique();
 
-        modelBuilder.Entity<Role>().HasData(
-            SeedData.Roles.Select((name, index) => new Role { Id = index + 1, Name = name, CreatedAtUtc = DateTime.UtcNow }));
+            entity.HasOne(x => x.SprintTicket)
+                .WithMany()
+                .HasForeignKey(x => x.SprintTicketId)
+                .OnDelete(DeleteBehavior.NoAction);
+        });
 
-        modelBuilder.Entity<SystemDefinition>().HasData(
-            SeedData.Systems.Select((name, index) => new SystemDefinition { Id = index + 1, Name = name, CreatedAtUtc = DateTime.UtcNow }));
+        modelBuilder.Entity<Role>().HasData(SeedData.RoleSeeds);
+
+        modelBuilder.Entity<SystemDefinition>().HasData(SeedData.SystemSeeds);
 
         modelBuilder.Entity<WeightCard>().HasData(SeedData.WeightCards);
     }

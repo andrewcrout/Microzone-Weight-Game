@@ -11,6 +11,12 @@ export interface AuthResponse {
   user: User;
 }
 
+export interface RegisterRequest {
+  email: string;
+  displayName: string;
+  password: string;
+}
+
 export interface Dashboard {
   greeting: string;
   currentSprint: string | null;
@@ -29,6 +35,15 @@ export interface SprintSummary {
   isActive: boolean;
   ticketCount: number;
 }
+
+export interface CreateSprintRequest {
+  name: string;
+  label: string;
+  goal: string | null;
+  isActive: boolean;
+}
+
+export interface UpdateSprintRequest extends CreateSprintRequest {}
 
 export interface Ticket {
   id: number;
@@ -67,13 +82,37 @@ export interface WeightCard {
   line: string;
 }
 
+export interface SaveWeightCardRequest {
+  id: number | null;
+  weightValue: number;
+  timeScore: number;
+  timeLabel: string;
+  estimatedTime: string;
+  element: string;
+  line: string;
+}
+
 export interface SystemDefinition {
   id: number;
   name: string;
 }
 
+export interface SaveSystemDefinitionRequest {
+  id: number | null;
+  name: string;
+}
+
 export interface TrelloBoardConfig {
   id: number;
+  name: string;
+  boardId: string;
+  baseUrl: string;
+  isEnabled: boolean;
+  systemName: string | null;
+}
+
+export interface SaveTrelloBoardConfigRequest {
+  id: number | null;
   name: string;
   boardId: string;
   baseUrl: string;

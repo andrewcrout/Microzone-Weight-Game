@@ -58,6 +58,67 @@ public sealed class SprintService(SprintManagerDbContext dbContext) : ISprintSer
                 sprint.Tickets.Select(MapTicket).ToArray());
     }
 
+    public async Task<SprintSummaryDto> CreateSprintAsync(CreateSprintRequest request, CancellationToken cancellationToken = default)
+    {
+        await SetActiveSprintStateAsync(request.IsActive, cancellationToken);
+
+        var sprint = new Domain.Entities.Sprint
+        {
+            Name = request.Name.Trim(),
+            Label = request.Label.Trim(),
+            Goal = string.IsNullOrWhiteSpace(request.Goal) ? null : request.Goal.Trim(),
+            IsActive = request.IsActive
+        };
+
+        dbContext.Sprints.Add(sprint);
+        await dbContext.SaveChangesAsync(cancellationToken);
+
+        return new SprintSummaryDto(sprint.Id, sprint.Name, sprint.Label, sprint.IsActive, 0);
+    }
+
+    public async Task<SprintSummaryDto?> UpdateSprintAsync(int id, UpdateSprintRequest request, CancellationToken cancellationToken = default)
+    {
+        var sprint = await dbContext.Sprints.Include(x => x.Tickets).FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        if (sprint is null)
+            return null;
+
+        await SetActiveSprintStateAsync(request.IsActive, cancellationToken, id);
+
+        sprint.Name = request.Name.Trim();
+        sprint.Label = request.Label.Trim();
+        sprint.Goal = string.IsNullOrWhiteSpace(request.Goal) ? null : request.Goal.Trim();
+        sprint.IsActive = request.IsActive;
+
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return new SprintSummaryDto(sprint.Id, sprint.Name, sprint.Label, sprint.IsActive, sprint.Tickets.Count);
+    }
+
+    public async Task<bool> DeleteSprintAsync(int id, CancellationToken cancellationToken = default)
+    {
+        var sprint = await dbContext.Sprints.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        if (sprint is null)
+            return false;
+
+        dbContext.Sprints.Remove(sprint);
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return true;
+    }
+
+    private async Task SetActiveSprintStateAsync(bool shouldActivate, CancellationToken cancellationToken, int? currentSprintId = null)
+    {
+        if (!shouldActivate)
+            return;
+
+        var activeSprints = await dbContext.Sprints
+            .Where(x => x.IsActive && (!currentSprintId.HasValue || x.Id != currentSprintId.Value))
+            .ToListAsync(cancellationToken);
+
+        foreach (var activeSprint in activeSprints)
+        {
+            activeSprint.IsActive = false;
+        }
+    }
+
     internal static SprintTicketDto MapTicket(Domain.Entities.SprintTicket ticket) =>
         new(
             ticket.Id,
@@ -130,6 +191,39 @@ public sealed class WeightCardService(SprintManagerDbContext dbContext) : IWeigh
         await dbContext.WeightCards.OrderBy(x => x.WeightValue)
             .Select(x => new WeightCardDto(x.Id, x.WeightValue, x.TimeScore, x.TimeLabel, x.EstimatedTime, x.Element, x.Line))
             .ToListAsync(cancellationToken);
+
+    public async Task<WeightCardDto> SaveAsync(SaveWeightCardRequest request, CancellationToken cancellationToken = default)
+    {
+        var entity = request.Id.HasValue
+            ? await dbContext.WeightCards.FirstAsync(x => x.Id == request.Id.Value, cancellationToken)
+            : new Domain.Entities.WeightCard();
+
+        entity.WeightValue = request.WeightValue;
+        entity.TimeScore = request.TimeScore;
+        entity.TimeLabel = request.TimeLabel.Trim();
+        entity.EstimatedTime = request.EstimatedTime.Trim();
+        entity.Element = request.Element.Trim();
+        entity.Line = request.Line.Trim();
+
+        if (!request.Id.HasValue)
+        {
+            dbContext.WeightCards.Add(entity);
+        }
+
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return new WeightCardDto(entity.Id, entity.WeightValue, entity.TimeScore, entity.TimeLabel, entity.EstimatedTime, entity.Element, entity.Line);
+    }
+
+    public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
+    {
+        var entity = await dbContext.WeightCards.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        if (entity is null)
+            return false;
+
+        dbContext.WeightCards.Remove(entity);
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return true;
+    }
 }
 
 public sealed class SystemService(SprintManagerDbContext dbContext) : ISystemService
@@ -138,6 +232,34 @@ public sealed class SystemService(SprintManagerDbContext dbContext) : ISystemSer
         await dbContext.SystemDefinitions.OrderBy(x => x.Name)
             .Select(x => new SystemDefinitionDto(x.Id, x.Name))
             .ToListAsync(cancellationToken);
+
+    public async Task<SystemDefinitionDto> SaveAsync(SaveSystemDefinitionRequest request, CancellationToken cancellationToken = default)
+    {
+        var entity = request.Id.HasValue
+            ? await dbContext.SystemDefinitions.FirstAsync(x => x.Id == request.Id.Value, cancellationToken)
+            : new Domain.Entities.SystemDefinition();
+
+        entity.Name = request.Name.Trim();
+
+        if (!request.Id.HasValue)
+        {
+            dbContext.SystemDefinitions.Add(entity);
+        }
+
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return new SystemDefinitionDto(entity.Id, entity.Name);
+    }
+
+    public async Task<bool> DeleteAsync(int id, CancellationToken cancellationToken = default)
+    {
+        var entity = await dbContext.SystemDefinitions.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        if (entity is null)
+            return false;
+
+        dbContext.SystemDefinitions.Remove(entity);
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return true;
+    }
 }
 
 public sealed class AuditService(SprintManagerDbContext dbContext) : IAuditService

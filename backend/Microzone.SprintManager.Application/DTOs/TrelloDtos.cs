@@ -1,8 +1,8 @@
 namespace Microzone.SprintManager.Application.DTOs;
 
 public sealed record TrelloBoardConfigDto(int Id, string Name, string BoardId, string BaseUrl, bool IsEnabled, string? SystemName);
-public sealed record SaveTrelloBoardConfigRequest(string Name, string BoardId, string BaseUrl, bool IsEnabled, string? SystemName);
-public sealed record GatherSprintTicketsRequest(int SprintId, string Label, bool UseMockData);
+public sealed record SaveTrelloBoardConfigRequest(int? Id, string Name, string BoardId, string BaseUrl, bool IsEnabled, string? SystemName);
+public sealed record GatherSprintTicketsRequest(int SprintId, string Label);
 public sealed record TrelloCardImportDto(
     string CardId,
     string BoardId,

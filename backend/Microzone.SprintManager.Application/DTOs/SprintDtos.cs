@@ -1,5 +1,7 @@
 namespace Microzone.SprintManager.Application.DTOs;
 
+public sealed record CreateSprintRequest(string Name, string Label, string? Goal, bool IsActive);
+public sealed record UpdateSprintRequest(string Name, string Label, string? Goal, bool IsActive);
 public sealed record SprintSummaryDto(int Id, string Name, string Label, bool IsActive, int TicketCount);
 public sealed record SprintDetailDto(int Id, string Name, string Label, string? Goal, bool IsActive, IReadOnlyList<SprintTicketDto> Tickets);
 public sealed record SprintTicketDto(

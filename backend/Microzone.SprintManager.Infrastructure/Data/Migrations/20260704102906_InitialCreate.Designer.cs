@@ -828,7 +828,6 @@ namespace Microzone.SprintManager.Infrastructure.Data.Migrations
                     b.HasOne("Microzone.SprintManager.Domain.Entities.SprintTicket", "SprintTicket")
                         .WithMany()
                         .HasForeignKey("SprintTicketId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Microzone.SprintManager.Domain.Entities.User", "User")

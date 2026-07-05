@@ -1,9 +1,12 @@
 services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
+    env_file:
+      - path: .env
+        format: raw
     environment:
       ACCEPT_EULA: "Y"
-      MSSQL_SA_PASSWORD: ${SQL_SA_PASSWORD}
+    command: /bin/sh -c 'export MSSQL_SA_PASSWORD="$$(printf "%s" "$$SQL_SA_PASSWORD" | sed "s/[$$][$$]/$/g")"; exec /opt/mssql/bin/sqlservr'
     volumes:
       - sqlserver-data:/var/opt/mssql
     profiles: ["database"]
@@ -12,10 +15,12 @@ services:
     build:
       context: .
       dockerfile: backend/Microzone.SprintManager.Api/Dockerfile
+    env_file:
+      - path: .env
+        format: raw
     environment:
       ASPNETCORE_ENVIRONMENT: Production
       ASPNETCORE_URLS: http://0.0.0.0:8080
-      ConnectionStrings__DefaultConnection: ${PROD_SQL_CONNECTION_STRING}
       Jwt__Issuer: ${JWT_ISSUER}
       Jwt__Audience: ${JWT_AUDIENCE}
       Jwt__Secret: ${JWT_SECRET}

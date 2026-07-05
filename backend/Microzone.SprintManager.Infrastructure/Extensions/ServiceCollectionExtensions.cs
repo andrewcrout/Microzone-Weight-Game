@@ -18,8 +18,14 @@ public static class ServiceCollectionExtensions
         services.Configure<JwtOptions>(configuration.GetSection(JwtOptions.SectionName));
         services.Configure<TrelloOptions>(configuration.GetSection(TrelloOptions.SectionName));
 
+        var connectionString =
+            NormalizeDollarEscapes(Environment.GetEnvironmentVariable("ConnectionStrings__DefaultConnection")) ??
+            NormalizeDollarEscapes(Environment.GetEnvironmentVariable("PROD_SQL_CONNECTION_STRING")) ??
+            BuildContainerDevelopmentConnectionString(configuration) ??
+            configuration.GetConnectionString("DefaultConnection");
+
         services.AddDbContext<SprintManagerDbContext>(options =>
-            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            options.UseSqlServer(connectionString));
 
         var jwtOptions = configuration.GetSection(JwtOptions.SectionName).Get<JwtOptions>() ?? new JwtOptions();
         var key = Encoding.UTF8.GetBytes(jwtOptions.Secret);
@@ -75,4 +81,18 @@ public static class ServiceCollectionExtensions
 
         return services;
     }
+
+    private static string? BuildContainerDevelopmentConnectionString(IConfiguration configuration)
+    {
+        var sqlPassword = configuration["SQL_SA_PASSWORD"];
+        if (string.IsNullOrWhiteSpace(sqlPassword))
+        {
+            return null;
+        }
+
+        return $"Server=sqlserver,1433;Database=MicrozoneSprintManager;User Id=sa;Password={NormalizeDollarEscapes(sqlPassword)};TrustServerCertificate=True";
+    }
+
+    private static string? NormalizeDollarEscapes(string? value) =>
+        value?.Replace("$$", "$", StringComparison.Ordinal);
 }

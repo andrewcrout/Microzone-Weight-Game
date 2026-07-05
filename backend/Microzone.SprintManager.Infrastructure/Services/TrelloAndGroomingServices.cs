@@ -23,52 +23,95 @@ public sealed class TrelloIntegrationService(
 
     public async Task<TrelloBoardConfigDto> SaveBoardConfigAsync(SaveTrelloBoardConfigRequest request, CancellationToken cancellationToken = default)
     {
-        var entity = new TrelloBoardConfig
-        {
-            Name = request.Name,
-            BoardId = request.BoardId,
-            BaseUrl = request.BaseUrl,
-            IsEnabled = request.IsEnabled,
-            SystemName = request.SystemName
-        };
-        dbContext.TrelloBoardConfigs.Add(entity);
+        var boardName = request.Name.Trim();
+        var requestedSystemName = string.IsNullOrWhiteSpace(request.SystemName)
+            ? boardName
+            : request.SystemName.Trim();
+
+        var matchedSystem = await dbContext.SystemDefinitions
+            .Where(x => x.Name == requestedSystemName || x.Name == boardName)
+            .OrderByDescending(x => x.Name == boardName)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (matchedSystem is null)
+            throw new InvalidOperationException($"No system definition matches board name '{boardName}'. Add the system definition first or use the same board name.");
+
+        var entity = request.Id.HasValue
+            ? await dbContext.TrelloBoardConfigs.FirstOrDefaultAsync(x => x.Id == request.Id.Value, cancellationToken)
+            : null;
+
+        entity ??= new TrelloBoardConfig();
+        entity.Name = boardName;
+        entity.BoardId = request.BoardId.Trim();
+        entity.BaseUrl = request.BaseUrl.Trim();
+        entity.IsEnabled = request.IsEnabled;
+        entity.SystemName = matchedSystem.Name;
+
+        if (!request.Id.HasValue)
+            dbContext.TrelloBoardConfigs.Add(entity);
+
         await dbContext.SaveChangesAsync(cancellationToken);
         return new TrelloBoardConfigDto(entity.Id, entity.Name, entity.BoardId, entity.BaseUrl, entity.IsEnabled, entity.SystemName);
     }
 
+    public async Task<bool> DeleteBoardConfigAsync(int id, CancellationToken cancellationToken = default)
+    {
+        var entity = await dbContext.TrelloBoardConfigs.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+        if (entity is null)
+            return false;
+
+        dbContext.TrelloBoardConfigs.Remove(entity);
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return true;
+    }
+
     public async Task<int> GatherSprintTicketsAsync(GatherSprintTicketsRequest request, CancellationToken cancellationToken = default)
     {
+        if (string.IsNullOrWhiteSpace(_options.ApiKey) || string.IsNullOrWhiteSpace(_options.Token))
+            throw new InvalidOperationException("Trello API credentials are missing. Configure TRELLO_API_KEY and TRELLO_TOKEN before importing sprint tickets.");
+
         var sprint = await dbContext.Sprints.Include(x => x.Tickets).FirstAsync(x => x.Id == request.SprintId, cancellationToken);
         sprint.Label = request.Label;
 
         var boardConfigs = await dbContext.TrelloBoardConfigs.Where(x => x.IsEnabled).ToListAsync(cancellationToken);
-        var cards = request.UseMockData || _options.UseMockData || string.IsNullOrWhiteSpace(_options.ApiKey)
-            ? GetMockCards(request.Label)
-            : await GetLiveCardsAsync(boardConfigs, request.Label, cancellationToken);
+        if (boardConfigs.Count == 0)
+            throw new InvalidOperationException("No enabled Trello boards are configured for import.");
+
+        var cards = await GetLiveCardsAsync(boardConfigs, request.Label, cancellationToken);
 
         foreach (var existing in sprint.Tickets.ToList())
         {
             dbContext.SprintTickets.Remove(existing);
         }
 
-        foreach (var config in boardConfigs.DefaultIfEmpty(new TrelloBoardConfig { SystemName = "PROMAN GENERAL" }))
+        var insertedCount = 0;
+        var boardLookup = boardConfigs
+            .GroupBy(x => x.BoardId)
+            .ToDictionary(group => group.Key, group => group.First());
+
+        foreach (var card in cards)
         {
-            foreach (var card in cards.Where(x => x.BoardId == config.BoardId || cards.Count == 1))
-            {
-                dbContext.SprintTickets.Add(MapImportedCard(card, sprint.Id, config.SystemName ?? "PROMAN GENERAL"));
-            }
+            var matchedConfig = boardLookup.TryGetValue(card.BoardId, out var config)
+                ? config
+                : null;
+
+            if (matchedConfig is null)
+                continue;
+
+            dbContext.SprintTickets.Add(MapImportedCard(card, sprint.Id, matchedConfig.SystemName ?? "PROMAN GENERAL"));
+            insertedCount++;
         }
 
         dbContext.TrelloImportRuns.Add(new TrelloImportRun
         {
             SprintId = sprint.Id,
-            ImportedTicketCount = cards.Count,
-            Source = request.UseMockData || _options.UseMockData ? "Mock" : "Trello",
-            UsedMockData = request.UseMockData || _options.UseMockData
+            ImportedTicketCount = insertedCount,
+            Source = "Trello",
+            UsedMockData = false
         });
 
         await dbContext.SaveChangesAsync(cancellationToken);
-        return cards.Count;
+        return insertedCount;
     }
 
     public SprintTicket MapImportedCard(TrelloCardImportDto card, int sprintId, string systemName)
@@ -128,35 +171,6 @@ public sealed class TrelloIntegrationService(
 
         return result;
     }
-
-    private static List<TrelloCardImportDto> GetMockCards(string label) =>
-    [
-        new(
-            "card-1",
-            "mock-board",
-            "list-1",
-            "Sprint login hardening",
-            $"Imported from mock board for label {label}",
-            "https://trello.example/card-1",
-            [label, "Security"],
-            [new TrelloCommentDto("Sprint Admin", "Please review auth edge cases.")],
-            [new TrelloMemberDto("member-1", "Sprint Admin", "admin@microzone.local")],
-            DateTime.UtcNow.AddDays(3),
-            DateTime.UtcNow),
-        new(
-            "card-2",
-            "mock-board",
-            "list-2",
-            "Trello board sync polish",
-            "Improve import feedback and progress handling.",
-            "https://trello.example/card-2",
-            [label, "Backend"],
-            [],
-            [new TrelloMemberDto("member-2", "Developer One", "dev1@microzone.local")],
-            DateTime.UtcNow.AddDays(5),
-            DateTime.UtcNow)
-    ];
-
     private sealed record TrelloApiCard(string Id, string IdList, string Name, string Desc, string ShortUrl, List<TrelloApiLabel> Labels, List<TrelloApiAction> Actions, List<TrelloApiMember> Members, DateTime? Due, DateTime DateLastActivity);
     private sealed record TrelloApiLabel(string Name);
     private sealed record TrelloApiAction(TrelloApiActionData? Data, TrelloApiMember? MemberCreator);

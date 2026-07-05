@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { AuthResponse, User } from '../../shared/models/app.models';
+import { AuthResponse, RegisterRequest, User } from '../../shared/models/app.models';
 
 const TOKEN_KEY = 'sprint-manager-token';
 const USER_KEY = 'sprint-manager-user';
@@ -23,6 +23,12 @@ export class AuthService {
 
   login(email: string, password: string) {
     return this.http.post<AuthResponse>(`${environment.apiUrl}/auth/login`, { email, password }).pipe(
+      tap((response) => this.persist(response))
+    );
+  }
+
+  register(payload: RegisterRequest) {
+    return this.http.post<AuthResponse>(`${environment.apiUrl}/auth/register`, payload).pipe(
       tap((response) => this.persist(response))
     );
   }

@@ -33,21 +33,21 @@ public sealed class TrelloMappingTests
     }
 
     [Fact]
-    public async Task GatherSprintTickets_ShouldUseMockImport()
+    public async Task GatherSprintTickets_ShouldFailWhenCredentialsAreMissing()
     {
         var fixture = TestFixture.Create();
         fixture.DbContext.Sprints.Add(new Domain.Entities.Sprint { Id = 10, Name = "Sprint 10", Label = "Sprint 10" });
-        fixture.DbContext.TrelloBoardConfigs.Add(new Domain.Entities.TrelloBoardConfig { Name = "Mock", BoardId = "mock-board", SystemName = "PROMAN GENERAL" });
+        fixture.DbContext.TrelloBoardConfigs.Add(new Domain.Entities.TrelloBoardConfig { Name = "PROMAN GENERAL", BoardId = "board-1", SystemName = "PROMAN GENERAL" });
         await fixture.DbContext.SaveChangesAsync();
 
         var service = new TrelloIntegrationService(
             fixture.DbContext,
             fixture.HttpClientFactory.Object,
-            Microsoft.Extensions.Options.Options.Create(new Infrastructure.Options.TrelloOptions { UseMockData = true }));
+            Microsoft.Extensions.Options.Options.Create(new Infrastructure.Options.TrelloOptions()));
 
-        var count = await service.GatherSprintTicketsAsync(new GatherSprintTicketsRequest(10, "Sprint 10", true));
+        var action = async () => await service.GatherSprintTicketsAsync(new GatherSprintTicketsRequest(10, "Sprint 10"));
 
-        count.Should().BeGreaterThan(0);
-        fixture.DbContext.SprintTickets.Should().NotBeEmpty();
+        await action.Should().ThrowAsync<InvalidOperationException>()
+            .WithMessage("*Trello API credentials are missing*");
     }
 }

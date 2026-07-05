@@ -322,8 +322,7 @@ namespace Microzone.SprintManager.Infrastructure.Data.Migrations
                         name: "FK_GroomingVotes_SprintTickets_SprintTicketId",
                         column: x => x.SprintTicketId,
                         principalTable: "SprintTickets",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_GroomingVotes_Users_UserId",
                         column: x => x.UserId,
