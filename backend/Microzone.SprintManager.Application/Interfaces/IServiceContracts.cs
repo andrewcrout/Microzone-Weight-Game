@@ -44,6 +44,9 @@ public interface ISprintTicketService
 {
     Task<PagedResultDto<SprintTicketDto>> GetTicketsAsync(int sprintId, SprintTicketFilterDto filter, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<SprintTicketDto>> GetMyTicketsAsync(string email, CancellationToken cancellationToken = default);
+    Task<SprintTicketDto?> AssignToUserAsync(int ticketId, int userId, CancellationToken cancellationToken = default);
+    Task<SprintTicketDto?> AssignToEmailAsync(int ticketId, string email, CancellationToken cancellationToken = default);
+    Task<SprintTicketDto?> UpdateWorkStatusAsync(int ticketId, string workStatus, string email, bool isAdmin, CancellationToken cancellationToken = default);
 }
 
 public interface ITrelloIntegrationService

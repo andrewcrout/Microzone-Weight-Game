@@ -2,6 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import {
+  AssignSprintTicketRequest,
   CreateSprintRequest,
   Dashboard,
   GroomingSession,
@@ -15,6 +16,7 @@ import {
   SystemDefinition,
   Ticket,
   TrelloBoardConfig,
+  UpdateSprintTicketStatusRequest,
   UpdateSprintRequest,
   User,
   WeightCard
@@ -55,6 +57,18 @@ export class ApiService {
 
   getMyTickets() {
     return this.http.get<Ticket[]>(`${environment.apiUrl}/sprinttickets/my`);
+  }
+
+  assignTicketToSelf(ticketId: number) {
+    return this.http.post<Ticket>(`${environment.apiUrl}/sprinttickets/${ticketId}/assign-self`, {});
+  }
+
+  assignTicketToUser(ticketId: number, payload: AssignSprintTicketRequest) {
+    return this.http.post<Ticket>(`${environment.apiUrl}/sprinttickets/${ticketId}/assign-user`, payload);
+  }
+
+  updateTicketWorkStatus(ticketId: number, payload: UpdateSprintTicketStatusRequest) {
+    return this.http.post<Ticket>(`${environment.apiUrl}/sprinttickets/${ticketId}/work-status`, payload);
   }
 
   getWeightCards() {

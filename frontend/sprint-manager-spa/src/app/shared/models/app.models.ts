@@ -24,6 +24,10 @@ export interface Dashboard {
   carryOverRate: number;
   remainingTickets: number;
   assignedTickets: number;
+  notStartedCount: number;
+  inProgressCount: number;
+  prSentCount: number;
+  completeCount: number;
   activeGroomingSessionId: number | null;
   isAdmin: boolean;
 }
@@ -45,6 +49,14 @@ export interface CreateSprintRequest {
 
 export interface UpdateSprintRequest extends CreateSprintRequest {}
 
+export interface AssignSprintTicketRequest {
+  userId: number;
+}
+
+export interface UpdateSprintTicketStatusRequest {
+  workStatus: string;
+}
+
 export interface Ticket {
   id: number;
   trelloCardId: string;
@@ -56,6 +68,7 @@ export interface Ticket {
   weightValue: number | null;
   timeScore: number | null;
   groomingStatus: string;
+  workStatus: string;
   labels: string[];
   assignees: string[];
   comments: string[];

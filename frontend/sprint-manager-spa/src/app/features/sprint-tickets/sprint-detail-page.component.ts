@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../core/auth/auth.service';
 import { ApiService } from '../../core/services/api.service';
-import { GroomingSession, SprintDetail } from '../../shared/models/app.models';
+import { GroomingSession, SprintDetail, Ticket, User } from '../../shared/models/app.models';
 
 @Component({
   selector: 'app-sprint-detail-page',
@@ -44,7 +44,9 @@ import { GroomingSession, SprintDetail } from '../../shared/models/app.models';
               <th>Assignees</th>
               <th>Comments</th>
               <th>Weight</th>
-              <th>Status</th>
+              <th>Grooming</th>
+              <th>Work status</th>
+              <th>Assignment</th>
             </tr>
           </thead>
           <tbody>
@@ -57,6 +59,26 @@ import { GroomingSession, SprintDetail } from '../../shared/models/app.models';
                 <td>{{ ticket.commentCount }}</td>
                 <td>{{ ticket.weightValue || '-' }}</td>
                 <td>{{ ticket.groomingStatus }}</td>
+                <td>{{ ticket.workStatus }}</td>
+                <td>
+                  <div class="assign-cell">
+                    @if (auth.isAdmin()) {
+                      <select [value]="selectedAssignees()[ticket.id] || ''" (change)="selectAssignee(ticket.id, $any($event.target).value)">
+                        <option value="">Choose developer</option>
+                        @for (user of assignableUsers(); track user.id) {
+                          <option [value]="user.id">{{ user.displayName }}</option>
+                        }
+                      </select>
+                      <button type="button" class="secondary assign-button" [disabled]="!selectedAssignees()[ticket.id]" (click)="assignTicket(ticket)">
+                        Assign
+                      </button>
+                    } @else {
+                      <button type="button" class="secondary assign-button" (click)="assignSelf(ticket)">
+                        Assign to me
+                      </button>
+                    }
+                  </div>
+                </td>
               </tr>
             }
           </tbody>
@@ -73,6 +95,9 @@ import { GroomingSession, SprintDetail } from '../../shared/models/app.models';
     input { width: 100%; margin: 1rem 0; padding: 0.85rem 1rem; border-radius: 0.9rem; background: #0f1d2d; border: 1px solid rgba(255,255,255,0.08); color: inherit; }
     table { width: 100%; border-collapse: collapse; }
     th, td { padding: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.08); text-align: left; vertical-align: top; }
+    .assign-cell { display: grid; gap: 0.5rem; min-width: 11rem; }
+    select { width: 100%; padding: 0.75rem 0.9rem; border-radius: 0.9rem; background: #0f1d2d; border: 1px solid rgba(255,255,255,0.08); color: inherit; }
+    .assign-button { width: 100%; }
     a { color: #93c4ff; }
     button { padding: 0.85rem 1.1rem; border-radius: 999px; border: 0; font-weight: 700; cursor: pointer; }
     .primary { background: #ffd08c; color: #08131f; }
@@ -87,15 +112,21 @@ export class SprintDetailPageComponent {
 
   readonly sprint = signal<SprintDetail | null>(null);
   readonly activeSession = signal<GroomingSession | null>(null);
+  readonly assignableUsers = signal<User[]>([]);
+  readonly selectedAssignees = signal<Record<number, string>>({});
   readonly search = signal('');
 
   constructor() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.api.getSprint(id).subscribe((value) => this.sprint.set(value));
+    this.loadSprint(id);
     this.api.getActiveGroomingSession(id).subscribe({
       next: (value) => this.activeSession.set(value),
       error: () => this.activeSession.set(null)
     });
+
+    if (this.auth.isAdmin()) {
+      this.api.getUsers().subscribe((value) => this.assignableUsers.set(value.filter((user) => !user.roles.includes('Admin'))));
+    }
   }
 
   filteredTickets() {
@@ -122,5 +153,41 @@ export class SprintDetailPageComponent {
 
   openLobby(sessionId: number) {
     void this.router.navigate(['/grooming', sessionId, 'lobby']);
+  }
+
+  selectAssignee(ticketId: number, userId: string) {
+    this.selectedAssignees.set({
+      ...this.selectedAssignees(),
+      [ticketId]: userId
+    });
+  }
+
+  assignSelf(ticket: Ticket) {
+    this.api.assignTicketToSelf(ticket.id).subscribe((updated) => this.patchTicket(updated));
+  }
+
+  assignTicket(ticket: Ticket) {
+    const userId = Number(this.selectedAssignees()[ticket.id]);
+    if (!userId) {
+      return;
+    }
+
+    this.api.assignTicketToUser(ticket.id, { userId }).subscribe((updated) => this.patchTicket(updated));
+  }
+
+  private loadSprint(id: number) {
+    this.api.getSprint(id).subscribe((value) => this.sprint.set(value));
+  }
+
+  private patchTicket(updated: Ticket) {
+    const sprint = this.sprint();
+    if (!sprint) {
+      return;
+    }
+
+    this.sprint.set({
+      ...sprint,
+      tickets: sprint.tickets.map((ticket) => ticket.id === updated.id ? updated : ticket)
+    });
   }
 }

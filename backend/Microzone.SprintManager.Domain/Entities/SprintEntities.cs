@@ -11,6 +11,8 @@ public sealed class Sprint : BaseEntity
 
 public sealed class SprintTicket : BaseEntity
 {
+    public const string DefaultWorkStatus = "Not Started";
+
     public int SprintId { get; set; }
     public Sprint Sprint { get; set; } = null!;
     public string TrelloCardId { get; set; } = string.Empty;
@@ -23,6 +25,7 @@ public sealed class SprintTicket : BaseEntity
     public int? WeightValue { get; set; }
     public int? TimeScore { get; set; }
     public string GroomingStatus { get; set; } = "Pending";
+    public string WorkStatus { get; set; } = DefaultWorkStatus;
     public DateTime? DueDateUtc { get; set; }
     public DateTime LastActivityAtUtc { get; set; }
     public ICollection<SprintTicketLabel> Labels { get; set; } = new List<SprintTicketLabel>();

@@ -84,7 +84,6 @@ export class GroomingStateService {
 
     if (this.countdownState() === null) {
       this.revealState.set(reveal);
-      this.pendingReveal = null;
     }
   }
 
@@ -106,7 +105,6 @@ export class GroomingStateService {
 
         if (this.pendingReveal) {
           this.revealState.set(this.pendingReveal);
-          this.pendingReveal = null;
         }
 
         return;

@@ -47,6 +47,7 @@ public sealed class SprintManagerDbContext(DbContextOptions<SprintManagerDbConte
             entity.HasIndex(x => new { x.SprintId, x.TrelloCardId }).IsUnique();
             entity.Property(x => x.Title).HasMaxLength(300);
             entity.Property(x => x.SystemName).HasMaxLength(150);
+            entity.Property(x => x.WorkStatus).HasMaxLength(50);
         });
 
         modelBuilder.Entity<TrelloBoardConfig>(entity =>

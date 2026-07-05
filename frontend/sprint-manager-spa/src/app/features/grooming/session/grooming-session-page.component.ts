@@ -186,6 +186,10 @@ export class GroomingSessionPageComponent implements OnDestroy {
       if (session?.id === this.sessionId) {
         this.session.set(session);
         this.loadSprint(session.sprintId);
+
+        if (session.status === 'Completed') {
+          void this.router.navigate(['/sprints', session.sprintId, 'tickets']);
+        }
       }
     });
 

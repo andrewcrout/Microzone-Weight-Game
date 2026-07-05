@@ -15,15 +15,22 @@ public sealed class DashboardService(SprintManagerDbContext dbContext) : IDashbo
         var activeSession = await dbContext.GroomingSessions.OrderByDescending(x => x.Id).FirstOrDefaultAsync(x => x.Status != "Completed", cancellationToken);
 
         var totalTickets = sprint?.Tickets.Count ?? 0;
-        var completedTickets = sprint?.Tickets.Count(x => x.WeightValue.HasValue) ?? 0;
+        var notStartedCount = sprint?.Tickets.Count(x => x.WorkStatus == "Not Started") ?? 0;
+        var inProgressCount = sprint?.Tickets.Count(x => x.WorkStatus == "In Progress") ?? 0;
+        var prSentCount = sprint?.Tickets.Count(x => x.WorkStatus == "PR Sent") ?? 0;
+        var completeCount = sprint?.Tickets.Count(x => x.WorkStatus == "Complete") ?? 0;
 
         return new DashboardDto(
             $"Welcome back, {user!.DisplayName}",
             sprint?.Name,
-            totalTickets == 0 ? 0 : Math.Round((decimal)completedTickets / totalTickets * 100, 1),
+            totalTickets == 0 ? 0 : Math.Round((decimal)completeCount / totalTickets * 100, 1),
             0,
-            totalTickets - completedTickets,
+            totalTickets - completeCount,
             assignedCount,
+            notStartedCount,
+            inProgressCount,
+            prSentCount,
+            completeCount,
             activeSession?.Id,
             isAdmin);
     }
@@ -131,6 +138,7 @@ public sealed class SprintService(SprintManagerDbContext dbContext) : ISprintSer
             ticket.WeightValue,
             ticket.TimeScore,
             ticket.GroomingStatus,
+            ticket.WorkStatus,
             ticket.Labels.Select(x => x.Name).ToArray(),
             ticket.Assignees.Select(x => x.DisplayName).ToArray(),
             ticket.Comments.Select(x => x.Text).ToArray());
@@ -183,6 +191,71 @@ public sealed class SprintTicketService(SprintManagerDbContext dbContext) : ISpr
             .ToListAsync(cancellationToken);
 
         return tickets.Select(SprintService.MapTicket).ToArray();
+    }
+
+    public async Task<SprintTicketDto?> AssignToUserAsync(int ticketId, int userId, CancellationToken cancellationToken = default)
+    {
+        var user = await dbContext.Users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+        if (user is null)
+            return null;
+
+        return await AssignInternalAsync(ticketId, user.DisplayName, user.Email, cancellationToken);
+    }
+
+    public async Task<SprintTicketDto?> AssignToEmailAsync(int ticketId, string email, CancellationToken cancellationToken = default)
+    {
+        var user = await dbContext.Users.FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+        if (user is null)
+            return null;
+
+        return await AssignInternalAsync(ticketId, user.DisplayName, user.Email, cancellationToken);
+    }
+
+    private async Task<SprintTicketDto?> AssignInternalAsync(int ticketId, string displayName, string email, CancellationToken cancellationToken)
+    {
+        var ticket = await dbContext.SprintTickets
+            .Include(x => x.Labels)
+            .Include(x => x.Assignees)
+            .Include(x => x.Comments)
+            .FirstOrDefaultAsync(x => x.Id == ticketId, cancellationToken);
+
+        if (ticket is null)
+            return null;
+
+        dbContext.SprintTicketAssignees.RemoveRange(ticket.Assignees);
+        ticket.Assignees.Clear();
+        ticket.Assignees.Add(new Domain.Entities.SprintTicketAssignee
+        {
+            DisplayName = displayName,
+            Email = email,
+            TrelloMemberId = string.Empty
+        });
+
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return SprintService.MapTicket(ticket);
+    }
+
+    public async Task<SprintTicketDto?> UpdateWorkStatusAsync(int ticketId, string workStatus, string email, bool isAdmin, CancellationToken cancellationToken = default)
+    {
+        var allowedStatuses = new[] { "Not Started", "In Progress", "PR Sent", "Complete" };
+        if (!allowedStatuses.Contains(workStatus))
+            throw new InvalidOperationException("Unsupported work status.");
+
+        var ticket = await dbContext.SprintTickets
+            .Include(x => x.Labels)
+            .Include(x => x.Assignees)
+            .Include(x => x.Comments)
+            .FirstOrDefaultAsync(x => x.Id == ticketId, cancellationToken);
+
+        if (ticket is null)
+            return null;
+
+        if (!isAdmin && !ticket.Assignees.Any(x => x.Email == email))
+            throw new InvalidOperationException("Only the assigned developer or an admin can update this ticket.");
+
+        ticket.WorkStatus = workStatus;
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return SprintService.MapTicket(ticket);
     }
 }
 

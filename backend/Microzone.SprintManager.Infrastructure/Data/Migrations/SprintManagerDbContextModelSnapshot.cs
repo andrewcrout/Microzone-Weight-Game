@@ -343,6 +343,11 @@ namespace Microzone.SprintManager.Infrastructure.Data.Migrations
                     b.Property<int?>("WeightValue")
                         .HasColumnType("int");
 
+                    b.Property<string>("WorkStatus")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("SprintId", "TrelloCardId")
@@ -825,6 +830,7 @@ namespace Microzone.SprintManager.Infrastructure.Data.Migrations
                     b.HasOne("Microzone.SprintManager.Domain.Entities.SprintTicket", "SprintTicket")
                         .WithMany()
                         .HasForeignKey("SprintTicketId")
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Microzone.SprintManager.Domain.Entities.User", "User")

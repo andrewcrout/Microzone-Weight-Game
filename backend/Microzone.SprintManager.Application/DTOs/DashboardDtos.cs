@@ -7,5 +7,9 @@ public sealed record DashboardDto(
     decimal CarryOverRate,
     int RemainingTickets,
     int AssignedTickets,
+    int NotStartedCount,
+    int InProgressCount,
+    int PrSentCount,
+    int CompleteCount,
     int? ActiveGroomingSessionId,
     bool IsAdmin);

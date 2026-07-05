@@ -15,6 +15,7 @@ public sealed record SprintTicketDto(
     int? WeightValue,
     int? TimeScore,
     string GroomingStatus,
+    string WorkStatus,
     IReadOnlyList<string> Labels,
     IReadOnlyList<string> Assignees,
     IReadOnlyList<string> Comments);
@@ -28,3 +29,5 @@ public sealed record SprintTicketFilterDto(
     int Page = 1,
     int PageSize = 20);
 public sealed record PagedResultDto<T>(IReadOnlyList<T> Items, int TotalCount, int Page, int PageSize);
+public sealed record AssignSprintTicketRequest(int UserId);
+public sealed record UpdateSprintTicketStatusRequest(string WorkStatus);
