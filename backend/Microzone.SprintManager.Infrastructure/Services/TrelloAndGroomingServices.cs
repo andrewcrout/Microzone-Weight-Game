@@ -219,12 +219,47 @@ public sealed class GroomingSessionService(
     SprintManagerDbContext dbContext,
     IVotingService votingService) : IGroomingSessionService
 {
+    public async Task<GroomingSessionDto?> GetSessionAsync(int sessionId, CancellationToken cancellationToken = default)
+    {
+        var session = await dbContext.GroomingSessions.FirstOrDefaultAsync(x => x.Id == sessionId, cancellationToken);
+        return session is null ? null : MapSession(session);
+    }
+
+    public async Task<GroomingSessionDto?> GetActiveSessionAsync(int sprintId, CancellationToken cancellationToken = default)
+    {
+        var session = await dbContext.GroomingSessions
+            .Where(x => x.SprintId == sprintId && x.Status != "Completed")
+            .OrderByDescending(x => x.Id)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        return session is null ? null : MapSession(session);
+    }
+
     public async Task<GroomingSessionDto> StartSessionAsync(int sprintId, int adminUserId, CancellationToken cancellationToken = default)
     {
+        var existingSession = await dbContext.GroomingSessions
+            .Where(x => x.SprintId == sprintId && x.Status != "Completed")
+            .OrderByDescending(x => x.Id)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (existingSession is not null)
+            return MapSession(existingSession);
+
         var session = new GroomingSession { SprintId = sprintId, Status = "Lobby", CurrentTicketIndex = 0 };
         dbContext.GroomingSessions.Add(session);
         await dbContext.SaveChangesAsync(cancellationToken);
-        return new GroomingSessionDto(session.Id, session.SprintId, session.Status, session.CurrentTicketIndex, session.VotesRevealed);
+        return MapSession(session);
+    }
+
+    public async Task<GroomingSessionDto?> BeginSessionAsync(int sessionId, CancellationToken cancellationToken = default)
+    {
+        var session = await dbContext.GroomingSessions.FirstOrDefaultAsync(x => x.Id == sessionId, cancellationToken);
+        if (session is null)
+            return null;
+
+        session.Status = "InProgress";
+        await dbContext.SaveChangesAsync(cancellationToken);
+        return MapSession(session);
     }
 
     public async Task<GroomingLobbyDto> JoinLobbyAsync(int sessionId, int userId, string displayName, bool isAdmin, string connectionId, CancellationToken cancellationToken = default)
@@ -254,6 +289,20 @@ public sealed class GroomingSessionService(
         var participant = await dbContext.GroomingParticipants.FirstAsync(x => x.GroomingSessionId == sessionId && x.UserId == userId, cancellationToken);
         participant.IsReady = isReady;
         await dbContext.SaveChangesAsync(cancellationToken);
+        return await BuildLobbyAsync(sessionId, cancellationToken);
+    }
+
+    public async Task<GroomingLobbyDto> LeaveLobbyAsync(int sessionId, int userId, CancellationToken cancellationToken = default)
+    {
+        var participant = await dbContext.GroomingParticipants
+            .FirstOrDefaultAsync(x => x.GroomingSessionId == sessionId && x.UserId == userId, cancellationToken);
+
+        if (participant is not null)
+        {
+            dbContext.GroomingParticipants.Remove(participant);
+            await dbContext.SaveChangesAsync(cancellationToken);
+        }
+
         return await BuildLobbyAsync(sessionId, cancellationToken);
     }
 
@@ -289,9 +338,23 @@ public sealed class GroomingSessionService(
         session.CurrentTicketIndex += 1;
         session.VotesRevealed = false;
 
-        var remaining = await dbContext.SprintTickets.CountAsync(x => x.SprintId == ticket.SprintId && !x.WeightValue.HasValue, cancellationToken);
-        if (remaining == 0)
-            session.Status = "Completed";
+        await FinalizeSessionStateAsync(session, ticket.SprintId, cancellationToken);
+
+        await dbContext.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task RemoveTicketAsync(int sessionId, int ticketId, CancellationToken cancellationToken = default)
+    {
+        var session = await dbContext.GroomingSessions.FirstAsync(x => x.Id == sessionId, cancellationToken);
+        var ticket = await dbContext.SprintTickets.FirstAsync(x => x.Id == ticketId, cancellationToken);
+
+        ticket.GroomingStatus = "Removed";
+        ticket.WeightValue = null;
+        ticket.TimeScore = null;
+        session.CurrentTicketIndex += 1;
+        session.VotesRevealed = false;
+
+        await FinalizeSessionStateAsync(session, ticket.SprintId, cancellationToken);
 
         await dbContext.SaveChangesAsync(cancellationToken);
     }
@@ -305,4 +368,17 @@ public sealed class GroomingSessionService(
 
         return new GroomingLobbyDto(sessionId, users, users.Count > 0 && users.Where(x => !x.IsAdmin).All(x => x.IsReady));
     }
+
+    private async Task FinalizeSessionStateAsync(GroomingSession session, int sprintId, CancellationToken cancellationToken)
+    {
+        var remaining = await dbContext.SprintTickets.CountAsync(
+            x => x.SprintId == sprintId && x.GroomingStatus == "Pending",
+            cancellationToken);
+
+        if (remaining == 0)
+            session.Status = "Completed";
+    }
+
+    private static GroomingSessionDto MapSession(GroomingSession session) =>
+        new(session.Id, session.SprintId, session.Status, session.CurrentTicketIndex, session.VotesRevealed);
 }

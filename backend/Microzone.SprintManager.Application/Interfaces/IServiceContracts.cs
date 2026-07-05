@@ -62,6 +62,7 @@ public interface IGroomingSessionService
     Task<GroomingSessionDto> StartSessionAsync(int sprintId, int adminUserId, CancellationToken cancellationToken = default);
     Task<GroomingSessionDto?> BeginSessionAsync(int sessionId, CancellationToken cancellationToken = default);
     Task<GroomingLobbyDto> JoinLobbyAsync(int sessionId, int userId, string displayName, bool isAdmin, string connectionId, CancellationToken cancellationToken = default);
+    Task<GroomingLobbyDto> LeaveLobbyAsync(int sessionId, int userId, CancellationToken cancellationToken = default);
     Task<GroomingLobbyDto> SetReadyAsync(int sessionId, int userId, bool isReady, CancellationToken cancellationToken = default);
     Task<RevealVotesDto> RevealVotesAsync(int sessionId, int ticketId, CancellationToken cancellationToken = default);
     Task AdvanceAsync(int sessionId, int ticketId, int finalWeight, CancellationToken cancellationToken = default);

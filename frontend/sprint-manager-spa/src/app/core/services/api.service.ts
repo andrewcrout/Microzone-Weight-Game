@@ -4,6 +4,7 @@ import { environment } from '../../../environments/environment';
 import {
   CreateSprintRequest,
   Dashboard,
+  GroomingSession,
   GroomingLobby,
   PagedResult,
   SaveSystemDefinitionRequest,
@@ -57,7 +58,7 @@ export class ApiService {
   }
 
   getWeightCards() {
-    return this.http.get<WeightCard[]>(`${environment.apiUrl}/admin/weight-cards`);
+    return this.http.get<WeightCard[]>(`${environment.apiUrl}/weightcards`);
   }
 
   saveWeightCard(payload: SaveWeightCardRequest) {
@@ -101,7 +102,32 @@ export class ApiService {
   }
 
   startGroomingSession(sprintId: number) {
-    return this.http.post<{ id: number }>(`${environment.apiUrl}/groomingsessions/start/${sprintId}`, {});
+    return this.http.post<GroomingSession>(`${environment.apiUrl}/groomingsessions/start/${sprintId}`, {});
+  }
+
+  getGroomingSession(sessionId: number) {
+    return this.http.get<GroomingSession>(`${environment.apiUrl}/groomingsessions/${sessionId}`);
+  }
+
+  getActiveGroomingSession(sprintId: number) {
+    return this.http.get<GroomingSession>(`${environment.apiUrl}/groomingsessions/active/sprint/${sprintId}`);
+  }
+
+  beginGroomingSession(sessionId: number) {
+    return this.http.post<GroomingSession>(`${environment.apiUrl}/groomingsessions/${sessionId}/begin`, {});
+  }
+
+  advanceGroomingTicket(sessionId: number, ticketId: number, finalWeight: number) {
+    const params = new HttpParams()
+      .set('sessionId', sessionId)
+      .set('ticketId', ticketId)
+      .set('finalWeight', finalWeight);
+
+    return this.http.post<void>(`${environment.apiUrl}/voting/advance`, null, { params });
+  }
+
+  removeTicketFromGrooming(sessionId: number, ticketId: number) {
+    return this.http.post<void>(`${environment.apiUrl}/groomingsessions/${sessionId}/remove/${ticketId}`, {});
   }
 
   resolveVotes(votes: number[]) {

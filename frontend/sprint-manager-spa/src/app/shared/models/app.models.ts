@@ -58,6 +58,7 @@ export interface Ticket {
   groomingStatus: string;
   labels: string[];
   assignees: string[];
+  comments: string[];
 }
 
 export interface SprintDetail extends SprintSummary {
@@ -131,6 +132,14 @@ export interface GroomingLobby {
   sessionId: number;
   participants: GroomingParticipant[];
   canStart: boolean;
+}
+
+export interface GroomingSession {
+  id: number;
+  sprintId: number;
+  status: string;
+  currentTicketIndex: number;
+  votesRevealed: boolean;
 }
 
 export interface GroomingVote {

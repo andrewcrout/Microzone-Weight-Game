@@ -1,17 +1,20 @@
 import { Injectable, computed, signal } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { environment } from '../../../environments/environment';
-import { GroomingLobby, RevealVotes } from '../../shared/models/app.models';
+import { GroomingLobby, GroomingSession, RevealVotes } from '../../shared/models/app.models';
 
 @Injectable({ providedIn: 'root' })
 export class GroomingStateService {
   private connection?: signalR.HubConnection;
+  private countdownTimer: ReturnType<typeof setInterval> | null = null;
 
   private readonly lobbyState = signal<GroomingLobby | null>(null);
+  private readonly sessionState = signal<GroomingSession | null>(null);
   private readonly revealState = signal<RevealVotes | null>(null);
   private readonly countdownState = signal<number | null>(null);
 
   readonly lobby = computed(() => this.lobbyState());
+  readonly session = computed(() => this.sessionState());
   readonly reveal = computed(() => this.revealState());
   readonly countdown = computed(() => this.countdownState());
 
@@ -23,8 +26,9 @@ export class GroomingStateService {
         .build();
 
       this.connection.on('LobbyUpdated', (lobby: GroomingLobby) => this.lobbyState.set(lobby));
+      this.connection.on('SessionUpdated', (session: GroomingSession) => this.sessionState.set(session));
       this.connection.on('VotesRevealed', (reveal: RevealVotes) => this.revealState.set(reveal));
-      this.connection.on('CountdownStarted', (seconds: number) => this.countdownState.set(seconds));
+      this.connection.on('CountdownStarted', (seconds: number) => this.startCountdown(seconds));
 
       await this.connection.start();
     }
@@ -34,6 +38,10 @@ export class GroomingStateService {
 
   async setReady(sessionId: number, isReady: boolean) {
     await this.connection?.invoke('SetReady', sessionId, isReady);
+  }
+
+  async leaveLobby(sessionId: number) {
+    await this.connection?.invoke('LeaveLobby', sessionId);
   }
 
   async submitVote(sessionId: number, ticketId: number, weightValue: number) {
@@ -46,5 +54,34 @@ export class GroomingStateService {
 
   setLobby(lobby: GroomingLobby) {
     this.lobbyState.set(lobby);
+  }
+
+  setSession(session: GroomingSession) {
+    this.sessionState.set(session);
+  }
+
+  clearReveal() {
+    this.revealState.set(null);
+  }
+
+  private startCountdown(seconds: number) {
+    if (this.countdownTimer) {
+      clearInterval(this.countdownTimer);
+    }
+
+    this.countdownState.set(seconds);
+    this.countdownTimer = setInterval(() => {
+      const next = (this.countdownState() ?? 1) - 1;
+      if (next <= 0) {
+        this.countdownState.set(null);
+        if (this.countdownTimer) {
+          clearInterval(this.countdownTimer);
+          this.countdownTimer = null;
+        }
+        return;
+      }
+
+      this.countdownState.set(next);
+    }, 1000);
   }
 }

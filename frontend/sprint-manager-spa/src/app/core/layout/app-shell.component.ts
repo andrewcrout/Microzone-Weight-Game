@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
@@ -7,7 +7,7 @@ import { AuthService } from '../auth/auth.service';
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   template: `
-    <div class="shell">
+    <div class="shell" [class.nav-collapsed]="navCollapsed()">
       <aside class="nav">
         <div>
           <p class="brand">Microzone</p>
@@ -30,7 +30,10 @@ import { AuthService } from '../auth/auth.service';
 
       <main class="content">
         <header>
-          <div>
+          <div class="header-left">
+            <button class="menu-toggle" type="button" (click)="toggleNav()">
+              {{ navCollapsed() ? 'Open menu' : 'Collapse menu' }}
+            </button>
             <p class="muted">Logged in as</p>
             <h1>{{ auth.user()?.displayName }}</h1>
           </div>
@@ -42,8 +45,10 @@ import { AuthService } from '../auth/auth.service';
     </div>
   `,
   styles: [`
-    .shell { height: 100vh; display: grid; grid-template-columns: 17rem 1fr; overflow: hidden; background: linear-gradient(180deg, #071018, #0b1721); color: #f6fbff; }
-    .nav { position: sticky; top: 0; height: 100vh; padding: 1.5rem; border-right: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 2rem; overflow: hidden; }
+    .shell { height: 100vh; display: grid; grid-template-columns: 17rem 1fr; overflow: hidden; background: linear-gradient(180deg, #071018, #0b1721); color: #f6fbff; transition: grid-template-columns 180ms ease; }
+    .shell.nav-collapsed { grid-template-columns: 0 1fr; }
+    .nav { position: sticky; top: 0; height: 100vh; padding: 1.5rem; border-right: 1px solid rgba(255,255,255,0.08); display: flex; flex-direction: column; gap: 2rem; overflow: hidden; transition: opacity 180ms ease, transform 180ms ease, padding 180ms ease, border-color 180ms ease; }
+    .shell.nav-collapsed .nav { opacity: 0; pointer-events: none; transform: translateX(-1rem); padding-left: 0; padding-right: 0; border-right-color: transparent; }
     .brand { margin: 0; text-transform: uppercase; letter-spacing: 0.2em; color: #8eb8ff; font-size: 0.75rem; }
     h2 { margin: 0.3rem 0 0; }
     nav { display: grid; gap: 0.45rem; }
@@ -52,16 +57,25 @@ import { AuthService } from '../auth/auth.service';
     button { margin-top: auto; cursor: pointer; }
     .content { height: 100vh; overflow-y: auto; padding: 1.5rem 2rem; }
     header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .header-left { display: grid; gap: 0.35rem; }
+    .menu-toggle { margin-top: 0; width: fit-content; background: rgba(255,255,255,0.06); }
     .muted { color: #8ca6be; margin: 0; }
     h1 { margin: 0.2rem 0 0; font-size: 1.6rem; }
     .role { color: #ffd8a6; }
     @media (max-width: 960px) {
       .shell { height: auto; grid-template-columns: 1fr; overflow: visible; }
+      .shell.nav-collapsed { grid-template-columns: 1fr; }
       .nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
+      .shell.nav-collapsed .nav { max-height: 0; padding-top: 0; padding-bottom: 0; border-bottom-color: transparent; }
       .content { height: auto; overflow: visible; }
     }
   `]
 })
 export class AppShellComponent {
   readonly auth = inject(AuthService);
+  readonly navCollapsed = signal(false);
+
+  toggleNav() {
+    this.navCollapsed.set(!this.navCollapsed());
+  }
 }

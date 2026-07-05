@@ -16,7 +16,8 @@ public sealed record SprintTicketDto(
     int? TimeScore,
     string GroomingStatus,
     IReadOnlyList<string> Labels,
-    IReadOnlyList<string> Assignees);
+    IReadOnlyList<string> Assignees,
+    IReadOnlyList<string> Comments);
 public sealed record SprintTicketFilterDto(
     string? Search,
     string? System,

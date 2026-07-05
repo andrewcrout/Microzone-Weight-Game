@@ -132,7 +132,8 @@ public sealed class SprintService(SprintManagerDbContext dbContext) : ISprintSer
             ticket.TimeScore,
             ticket.GroomingStatus,
             ticket.Labels.Select(x => x.Name).ToArray(),
-            ticket.Assignees.Select(x => x.DisplayName).ToArray());
+            ticket.Assignees.Select(x => x.DisplayName).ToArray(),
+            ticket.Comments.Select(x => x.Text).ToArray());
 }
 
 public sealed class SprintTicketService(SprintManagerDbContext dbContext) : ISprintTicketService
