@@ -14,110 +14,121 @@ import { getTicketCardAssets } from '../card-asset-map';
       [attr.aria-label]="cardAriaLabel()"
       [attr.aria-pressed]="showingBack()"
       (click)="toggleCardFace()">
-      <div class="card-rotor" [style.transform]="'rotateY(' + rotationDegrees() + 'deg)'">
-        <section class="face front">
-          @if (!frontArtMissing()) {
-            <img class="art" [src]="ticketAssets.front" alt="" (error)="frontArtMissing.set(true)" />
-          }
+      <div class="card-frame">
+        <div class="card-rotor" [style.transform]="'rotateY(' + rotationDegrees() + 'deg)'">
+          <section class="face front">
+            @if (!frontArtMissing()) {
+              <img class="art" [src]="ticketAssets.front" alt="" (error)="frontArtMissing.set(true)" />
+            }
 
-          <div class="overlay"></div>
-          <div class="front-layout">
-            <div class="comment-badge">{{ comments().length }}</div>
+            <div class="overlay"></div>
+            <div class="front-layout">
+              <div class="comment-badge">{{ comments().length }}</div>
 
-            <div class="comment-flag" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v7A2.5 2.5 0 0 1 17.5 15H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 12.5z"/>
-              </svg>
-            </div>
-
-            <header class="title-bar">
-              <h3>{{ ticket().title }}</h3>
-            </header>
-
-            <div class="system-bar">{{ ticket().systemName }}</div>
-
-            <section class="labels-panel">
-              @for (label of ticket().labels; track label) {
-                <span>{{ label }}</span>
-              } @empty {
-                <span class="muted-chip">No labels</span>
-              }
-            </section>
-
-            <section class="description-panel">
-              <div class="description-copy" [innerHTML]="ticket().description | markdown"></div>
-            </section>
-
-            <section class="stat-box time-box">
-              <div class="stat-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M12 6.25a.75.75 0 0 1 .75.75v4.19l2.78 1.6a.75.75 0 1 1-.75 1.3l-3.15-1.82A.75.75 0 0 1 11.25 12V7a.75.75 0 0 1 .75-.75z"/>
-                  <path d="M12 2.5a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1.5a8 8 0 1 0 0 16a8 8 0 0 0 0-16z"/>
-                </svg>
-              </div>
-              <div class="stat-copy">
-                <span class="stat-label">Time</span>
-                <strong>{{ ticket().timeScore ?? '-' }}</strong>
-              </div>
-            </section>
-
-            <section class="stat-box weight-box">
-              <div class="stat-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                  <path d="M12 4a3.25 3.25 0 0 0-3.25 3.25c0 .57.15 1.1.4 1.56H7.5a2 2 0 0 0-1.95 1.56L4.03 17.3A2 2 0 0 0 5.98 19.75h12.04a2 2 0 0 0 1.95-2.45l-1.52-6.93A2 2 0 0 0 16.5 8.8h-1.65c.25-.46.4-.99.4-1.56A3.25 3.25 0 0 0 12 4zm0 1.5a1.75 1.75 0 1 1 0 3.5a1.75 1.75 0 0 1 0-3.5z"/>
-                </svg>
-              </div>
-              <div class="stat-copy">
-                <span class="stat-label">Weight</span>
-                <strong>{{ ticket().weightValue ?? '-' }}</strong>
-              </div>
-            </section>
-          </div>
-        </section>
-
-        <section class="face back">
-          @if (!backArtMissing()) {
-            <img class="art" [src]="ticketAssets.back" alt="" (error)="backArtMissing.set(true)" />
-          }
-
-          <div class="overlay comments-overlay"></div>
-          <div class="back-layout">
-            <div class="back-count">{{ comments().length }}</div>
-
-            <header class="back-ticket-bar">
-              <span class="back-ticket-title">{{ ticket().title }}</span>
-            </header>
-
-            <div class="back-section-bar">
-              <div class="message-medallion" aria-hidden="true">
+              <div class="comment-flag" aria-hidden="true">
                 <svg viewBox="0 0 24 24" focusable="false">
                   <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v7A2.5 2.5 0 0 1 17.5 15H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 12.5z"/>
                 </svg>
               </div>
 
-              <header class="comments-title-bar">COMMENTS</header>
-            </div>
+              <header class="title-bar">
+                <h3>{{ ticket().title }}</h3>
+              </header>
 
-            <section class="comments-panel">
-              @if (comments().length) {
-                <ul>
-                  @for (comment of comments(); track comment) { <li>{{ comment }}</li> }
-                </ul>
-              } @else {
-                <p class="empty">No comments captured for this ticket.</p>
-              }
-            </section>
-          </div>
-        </section>
+              <div class="system-bar">{{ ticket().systemName }}</div>
+
+              <section class="labels-panel">
+                @for (label of ticket().labels; track label) {
+                  <span>{{ label }}</span>
+                } @empty {
+                  <span class="muted-chip">No labels</span>
+                }
+              </section>
+
+              <section class="description-panel">
+                <div class="description-copy" [innerHTML]="ticket().description | markdown"></div>
+              </section>
+
+              <section class="stat-box time-box">
+                <div class="stat-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M12 6.25a.75.75 0 0 1 .75.75v4.19l2.78 1.6a.75.75 0 1 1-.75 1.3l-3.15-1.82A.75.75 0 0 1 11.25 12V7a.75.75 0 0 1 .75-.75z"/>
+                    <path d="M12 2.5a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1.5a8 8 0 1 0 0 16a8 8 0 0 0 0-16z"/>
+                  </svg>
+                </div>
+                <div class="stat-copy">
+                  <span class="stat-label">Time</span>
+                  <strong>{{ ticket().timeScore ?? '-' }}</strong>
+                </div>
+              </section>
+
+              <section class="stat-box weight-box">
+                <div class="stat-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M12 4a3.25 3.25 0 0 0-3.25 3.25c0 .57.15 1.1.4 1.56H7.5a2 2 0 0 0-1.95 1.56L4.03 17.3A2 2 0 0 0 5.98 19.75h12.04a2 2 0 0 0 1.95-2.45l-1.52-6.93A2 2 0 0 0 16.5 8.8h-1.65c.25-.46.4-.99.4-1.56A3.25 3.25 0 0 0 12 4zm0 1.5a1.75 1.75 0 1 1 0 3.5a1.75 1.75 0 0 1 0-3.5z"/>
+                  </svg>
+                </div>
+                <div class="stat-copy">
+                  <span class="stat-label">Weight</span>
+                  <strong>{{ ticket().weightValue ?? '-' }}</strong>
+                </div>
+              </section>
+            </div>
+          </section>
+
+          <section class="face back">
+            @if (!backArtMissing()) {
+              <img class="art" [src]="ticketAssets.back" alt="" (error)="backArtMissing.set(true)" />
+            }
+
+            <div class="overlay comments-overlay"></div>
+            <div class="back-layout">
+              <div class="back-count">{{ comments().length }}</div>
+
+              <header class="back-ticket-bar">
+                <span class="back-ticket-title">{{ ticket().title }}</span>
+              </header>
+
+              <div class="back-section-bar">
+                <div class="message-medallion" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" focusable="false">
+                    <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v7A2.5 2.5 0 0 1 17.5 15H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 12.5z"/>
+                  </svg>
+                </div>
+
+                <header class="comments-title-bar">COMMENTS</header>
+              </div>
+
+              <section class="comments-panel">
+                @if (comments().length) {
+                  <ul>
+                    @for (comment of comments(); track comment) { <li>{{ comment }}</li> }
+                  </ul>
+                } @else {
+                  <p class="empty">No comments captured for this ticket.</p>
+                }
+              </section>
+            </div>
+          </section>
+        </div>
       </div>
     </button>
   `,
   styles: [`
-    :host { display: grid; }
+    :host {
+      display: grid;
+      justify-items: center;
+    }
+
     .card-shell {
-      width: min(100%, 21rem);
-      min-height: 34.5rem;
-      aspect-ratio: 5 / 7;
+      --ticket-base-width: 21rem;
+      --ticket-base-height: 34.5rem;
+      --ticket-scale: 1.1;
+      display: block;
+      width: calc(var(--ticket-base-width) * var(--ticket-scale));
+      height: calc(var(--ticket-base-height) * var(--ticket-scale));
+      max-width: 100%;
+      min-height: 0;
       padding: 0;
       border: 0;
       background: transparent;
@@ -127,10 +138,16 @@ import { getTicketCardAssets } from '../card-asset-map';
       color: inherit;
       text-align: left;
     }
+    .card-frame {
+      width: var(--ticket-base-width);
+      height: var(--ticket-base-height);
+      transform: scale(var(--ticket-scale));
+      transform-origin: top left;
+    }
     .card-rotor {
       position: relative;
-      width: 100%;
-      height: 100%;
+      width: var(--ticket-base-width);
+      height: var(--ticket-base-height);
       transition: transform 1.15s cubic-bezier(0.2, 0.8, 0.2, 1);
       transform-style: preserve-3d;
     }
@@ -165,8 +182,9 @@ import { getTicketCardAssets } from '../card-asset-map';
     .front-layout,
     .back-layout {
       position: relative;
-      z-index: 1;
+      width: 100%;
       height: 100%;
+      z-index: 1;
       color: #f7f3ea;
     }
     .front-layout {
@@ -260,38 +278,7 @@ import { getTicketCardAssets } from '../card-asset-map';
       color: #2f2a25;
       overflow: hidden;
     }
-    .labels-panel {
-      grid-column: 1 / -1;
-      grid-row: 4;
-      margin: 0 1.1rem 0.1rem 1rem;
-      padding: 0.2rem 0.8rem 0.15rem 0.34rem;
-      display: flex;
-      gap: 0.35rem;
-      flex-wrap: wrap;
-      align-content: start;
-    }
-    .labels-panel span {
-      display: inline-flex;
-      align-items: center;
-      max-width: 100%;
-      min-height: 1.35rem;
-      padding: 0.08rem 0.48rem;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.9);
-      color: #4b4035;
-      font-size: 0.62rem;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    .muted-chip { opacity: 0.8; }
-    .description-panel {
-      grid-column: 1 / -1;
-      grid-row: 5;
-      margin: 0 1.12rem 0 1rem;
-      padding: 0.02rem 0.8rem 0.4rem 0.42rem;
-    }
+
     .description-copy {
       height: 100%;
       overflow: auto;
@@ -300,7 +287,46 @@ import { getTicketCardAssets } from '../card-asset-map';
       font-size: 0.8rem;
       line-height: 1.22;
       scrollbar-width: thin;
+      scrollbar-color: #7b6347 rgba(88, 67, 44, 0.18);
     }
+    .description-panel {
+      position: absolute;
+      transform: translatey(260px) translatex(50px);
+      height: 175px;
+      width: 230px;
+      margin: 0 1.12rem 0 1rem;
+      padding: 0.02rem 0.8rem 0.4rem 0.42rem;
+    }
+    
+    .labels-panel {
+      position: absolute;
+      transform: translatey(160px) translatex(70px);
+      display: flex;
+      height: 100px;
+      width: 200px;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      align-content: start;
+    } 
+
+    .labels-panel span {
+      display: inline-flex;
+      align-items: center;
+      max-width: 100%;
+      min-height: 1.35rem;
+      padding: 0.08rem 0.48rem;
+      border-radius: 999px;
+      background: rgba(179, 162, 66, 0.9);
+      color: #4b4035;
+      font-size: 0.62rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .muted-chip { opacity: 0.8; }
+    
+    
     .description-copy :first-child { margin-top: 0; }
     .description-copy :last-child { margin-bottom: 0; }
     .stat-box {
@@ -312,20 +338,20 @@ import { getTicketCardAssets } from '../card-asset-map';
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
     }
     .time-box {
-      grid-column: 1 / 2;
-      grid-row: 6;
-      align-self: start;
-      margin: -0.7rem 0 0 0.22rem;
-      padding-right: 0.2rem;
-    }
-    .weight-box {
-      grid-column: 3 / 4;
-      grid-row: 6;
-      align-self: start;
-      justify-self: end;
-      margin: -0.7rem 0.35rem 0 0;
-      padding-left: 0.1rem;
-    }
+  grid-column: 1 / 2;
+  grid-row: 6;
+  align-self: start;
+  margin: -0.7rem 0 0 0.22rem;
+  padding-right: 0.2rem;
+}
+.weight-box {
+  grid-column: 3 / 4;
+  grid-row: 6;
+  align-self: start;
+  justify-self: end;
+  margin: -0.7rem 0.35rem 0 0;
+  padding-left: 0.1rem;
+}
     .stat-icon {
       width: 1.1rem;
       height: 1.1rem;
@@ -421,6 +447,27 @@ import { getTicketCardAssets } from '../card-asset-map';
       color: #302a24;
       line-height: 1.35;
       scrollbar-width: thin;
+      scrollbar-color: #7b6347 rgba(88, 67, 44, 0.18);
+    }
+    .description-copy::-webkit-scrollbar,
+    .comments-panel ul::-webkit-scrollbar {
+      width: 0.55rem;
+      height: 0.55rem;
+    }
+    .description-copy::-webkit-scrollbar-track,
+    .comments-panel ul::-webkit-scrollbar-track {
+      background: rgba(88, 67, 44, 0.16);
+      border-radius: 999px;
+    }
+    .description-copy::-webkit-scrollbar-thumb,
+    .comments-panel ul::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #9d845f, #6f573d);
+      border-radius: 999px;
+      border: 1px solid rgba(226, 205, 170, 0.28);
+    }
+    .description-copy::-webkit-scrollbar-thumb:hover,
+    .comments-panel ul::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #af9470, #7a6045);
     }
     .comments-panel li + li { margin-top: 0.7rem; }
     .empty {
@@ -430,7 +477,14 @@ import { getTicketCardAssets } from '../card-asset-map';
       line-height: 1.35;
     }
     @media (max-width: 960px) {
-      .card-shell { width: 100%; max-width: 21rem; min-height: 32rem; }
+      .card-shell {
+        --ticket-scale: 1;
+      }
+    }
+    @media (min-width: 1400px) and (min-height: 860px) {
+      .card-shell {
+        --ticket-scale: 1.18;
+      }
     }
   `]
 })

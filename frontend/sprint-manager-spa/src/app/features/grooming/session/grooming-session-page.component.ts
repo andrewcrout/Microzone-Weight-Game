@@ -50,39 +50,42 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
             @if (currentTicket()) {
               <p class="instruction">Choose a weight card. The admin reveals the room, then confirms the most common weight or marks the ticket for removal.</p>
 
-              <div class="weight-deck-panel">
-                <div class="deck-stage" [class.ready]="deckReady()">
-                  @for (card of weightCards(); track card.id; let index = $index) {
-                    <div
-                      class="deck-card"
-                      [class.revealed-stack]="index < activeWeightCardIndex()"
-                      [class.current-card]="index === activeWeightCardIndex()"
-                      [class.next-card]="index === activeWeightCardIndex() + 1"
-                      [class.face-down-stack]="index > activeWeightCardIndex()"
-                      [style.transform]="weightCardTransform(index)"
-                      [style.z-index]="weightCardZIndex(index)">
-                      <app-weight-card
-                        [card]="card"
-                        [faceUp]="isFaceUpWeightCard(index)"
-                        [clickable]="isWeightCardClickable(index)"
-                        [selected]="selectedWeight() === card.weightValue"
-                        (picked)="onWeightCardPicked(index)" />
+              @if (showWeightDeck()) {
+                <div class="weight-deck-panel">
+                  <div class="deck-stage" [class.ready]="deckReady()">
+                    @for (card of weightCards(); track card.id; let index = $index) {
+                      <div
+                        class="deck-card"
+                        [class.revealed-stack]="index < activeWeightCardIndex()"
+                        [class.current-card]="index === activeWeightCardIndex()"
+                        [class.next-card]="index === activeWeightCardIndex() + 1"
+                        [class.face-down-stack]="index > activeWeightCardIndex()"
+                        [style.transform]="weightCardTransform(index)"
+                        [style.z-index]="weightCardZIndex(index)">
+                        <app-weight-card
+                          [card]="card"
+                          [faceUp]="isFaceUpWeightCard(index)"
+                          [clickable]="isWeightCardClickable(index)"
+                          [selected]="selectedWeight() === card.weightValue"
+                          (picked)="onWeightCardPicked(index)" />
+                      </div>
+                    }
+                  </div>
+
+                  <div class="deck-controls">
+                    <div class="carousel-meta">
+                      <span>{{ deckStatusLabel() }}</span>
+                      <span>{{ selectedWeight() !== null ? 'Selected ' + selectedWeight() : 'No vote selected' }}</span>
                     </div>
-                  }
-                </div>
 
-                <div class="deck-controls">
-                  <div class="carousel-meta">
-                    <span>{{ deckStatusLabel() }}</span>
-                    <span>{{ selectedWeight() !== null ? 'Selected ' + selectedWeight() : 'No vote selected' }}</span>
-                  </div>
-
-                  <div class="deck-nav-actions">
-                    <button class="nav-button ghost" [disabled]="!hasPreviousWeightCard()" (click)="previousWeightCard()">Previous card</button>
-                    <button class="nav-button ghost" [disabled]="!hasNextFaceDownWeightCard()" (click)="nextWeightCard()">Next card</button>
+                    @if (editingRevealedVote()) {
+                      <button class="nav-button ghost" [disabled]="!canSubmitCurrentCard()" (click)="submitCurrentCard()">
+                        Reconfirm card
+                      </button>
+                    }
                   </div>
                 </div>
-              </div>
+              }
 
               <div class="actions">
                 @if (auth.isAdmin()) {
@@ -107,7 +110,12 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
                 </div>
               }
 
-              <app-vote-reveal [reveal]="groomingState.reveal()" />
+              @if (showRevealResults()) {
+                <app-vote-reveal
+                  [reveal]="groomingState.reveal()"
+                  [currentUserId]="currentUserId()"
+                  (changeRequested)="beginVoteEdit()" />
+              }
             }
           </section>
         </div>
@@ -143,18 +151,7 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
     .deck-card.revealed-stack { filter: saturate(0.9); }
     .deck-card.current-card { filter: drop-shadow(0 1rem 1.4rem rgba(0, 0, 0, 0.28)); }
     .deck-card.next-card { filter: drop-shadow(0 0.65rem 1.1rem rgba(0, 0, 0, 0.22)); }
-    .deck-controls {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .deck-nav-actions {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-    }
+    .deck-controls { display: grid; gap: 0.9rem; }
     .carousel-meta {
       display: flex;
       align-items: center;
@@ -170,7 +167,7 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
     .reveal, .confirm { background: #ffd08c; color: #08131f; }
     .remove { background: rgba(255,255,255,0.08); color: #f4f7fb; }
     .ghost { background: rgba(255,255,255,0.08); color: #f4f7fb; }
-    .nav-button { min-width: 8rem; min-height: 3.5rem; font-size: 1rem; line-height: 1; }
+    .nav-button { width: 100%; min-height: 3.5rem; font-size: 1rem; line-height: 1; }
     .actions-toggle { width: 100%; margin-top: 0; }
     .actions button, .actions-menu button { width: 100%; }
     @media (max-width: 1200px) {
@@ -182,7 +179,6 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
       .deck-stage { min-height: 21rem; }
       .deck-card { width: min(14rem, calc(100% - 2rem)); left: calc(50% - min(7rem, calc((100% - 2rem) / 2))); }
       .deck-controls { justify-content: center; }
-      .deck-nav-actions { width: 100%; }
       .nav-button { width: 100%; height: auto; }
       .carousel-meta { justify-content: center; text-align: center; }
     }
@@ -209,7 +205,9 @@ export class GroomingSessionPageComponent implements OnDestroy {
   readonly activeWeightCardIndex = signal(-1);
   readonly actionsMenuOpen = signal(false);
   readonly deckReady = signal(false);
+  readonly editingRevealedVote = signal(false);
   readonly sessionId = Number(this.route.snapshot.paramMap.get('sessionId'));
+  readonly currentUserId = computed(() => this.auth.user()?.id ?? null);
   readonly remainingTickets = computed(() => (this.sprint()?.tickets ?? []).filter((ticket) => ticket.groomingStatus === 'Pending'));
   readonly currentTicket = computed<Ticket | null>(() => this.remainingTickets()[0] ?? null);
   readonly roundLabel = computed(() => {
@@ -225,6 +223,13 @@ export class GroomingSessionPageComponent implements OnDestroy {
     const reveal = this.groomingState.reveal();
     return !!reveal && (!!reveal.majorityWeight || this.selectedWeight() !== null);
   });
+  readonly currentUserRevealVote = computed(() => {
+    const currentUserId = this.currentUserId();
+    const reveal = this.groomingState.reveal();
+    return reveal?.votes.find((vote) => vote.userId === currentUserId) ?? null;
+  });
+  readonly showWeightDeck = computed(() => !this.groomingState.reveal() || this.editingRevealedVote());
+  readonly showRevealResults = computed(() => !!this.groomingState.reveal() && !this.editingRevealedVote());
   readonly deckStatusLabel = computed(() => {
     const totalCards = this.weightCards().length;
     const activeIndex = this.activeWeightCardIndex();
@@ -286,8 +291,13 @@ export class GroomingSessionPageComponent implements OnDestroy {
     this.pollTimer = setInterval(() => this.loadSession(), 2000);
   }
 
-  vote(weightValue: number) {
+  chooseWeight(weightValue: number) {
     this.selectedWeight.set(weightValue);
+
+    if (this.editingRevealedVote()) {
+      return;
+    }
+
     const ticketId = this.currentTicket()?.id;
     if (ticketId) {
       void this.groomingState.submitVote(this.sessionId, ticketId, weightValue);
@@ -303,7 +313,7 @@ export class GroomingSessionPageComponent implements OnDestroy {
 
     const card = this.weightCards()[index];
     if (card) {
-      this.vote(card.weightValue);
+      this.chooseWeight(card.weightValue);
     }
   }
 
@@ -315,21 +325,23 @@ export class GroomingSessionPageComponent implements OnDestroy {
     return this.activeWeightCardIndex() < this.weightCards().length - 1;
   }
 
-  hasPreviousWeightCard() {
-    return this.activeWeightCardIndex() > 0;
+  canSubmitCurrentCard() {
+    return this.selectedWeight() !== null;
   }
 
-  previousWeightCard() {
-    if (!this.hasPreviousWeightCard()) {
+  submitCurrentCard() {
+    const ticketId = this.currentTicket()?.id;
+    const selectedWeight = this.selectedWeight();
+    const currentUserId = this.currentUserId();
+    if (!ticketId || selectedWeight === null) {
       return;
     }
 
-    const previousIndex = this.activeWeightCardIndex() - 1;
-    this.activeWeightCardIndex.set(previousIndex);
+    void this.groomingState.submitVote(this.sessionId, ticketId, selectedWeight);
 
-    const card = this.weightCards()[previousIndex];
-    if (card) {
-      this.vote(card.weightValue);
+    if (this.editingRevealedVote() && currentUserId !== null) {
+      this.groomingState.updateRevealedVote(currentUserId, selectedWeight);
+      this.editingRevealedVote.set(false);
     }
   }
 
@@ -389,8 +401,20 @@ export class GroomingSessionPageComponent implements OnDestroy {
   reveal() {
     const ticketId = this.currentTicket()?.id;
     if (ticketId) {
+      this.editingRevealedVote.set(false);
       void this.groomingState.revealVotes(this.sessionId, ticketId);
     }
+  }
+
+  beginVoteEdit() {
+    const currentVote = this.currentUserRevealVote();
+    if (!currentVote) {
+      return;
+    }
+
+    this.selectedWeight.set(currentVote.weightValue);
+    this.activeWeightCardIndex.set(this.weightCards().findIndex((card) => card.weightValue === currentVote.weightValue));
+    this.editingRevealedVote.set(true);
   }
 
   confirmAndContinue() {
@@ -474,6 +498,7 @@ export class GroomingSessionPageComponent implements OnDestroy {
     this.activeWeightCardIndex.set(-1);
     this.selectedWeight.set(null);
     this.deckReady.set(false);
+    this.editingRevealedVote.set(false);
 
     // TODO: Keep face/position state here so Three.js can replace the CSS deck transforms later.
     requestAnimationFrame(() => this.deckReady.set(true));

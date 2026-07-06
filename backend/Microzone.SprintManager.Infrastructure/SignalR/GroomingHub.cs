@@ -38,6 +38,13 @@ public sealed class GroomingHub(IGroomingSessionService groomingSessionService, 
         var userId = int.Parse(Context.User!.FindFirstValue(ClaimTypes.NameIdentifier)!);
         await votingService.SubmitVoteAsync(request, userId);
         await Clients.Group($"session-{request.SessionId}").SendAsync("ParticipantReady", userId);
+
+        var session = await groomingSessionService.GetSessionAsync(request.SessionId);
+        if (session?.VotesRevealed == true)
+        {
+            var reveal = await groomingSessionService.RevealVotesAsync(request.SessionId, request.TicketId);
+            await Clients.Group($"session-{request.SessionId}").SendAsync("VotesRevealed", reveal);
+        }
     }
 
     public async Task RevealVotes(int sessionId, int ticketId)

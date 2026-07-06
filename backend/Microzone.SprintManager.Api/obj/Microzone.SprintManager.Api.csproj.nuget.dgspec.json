@@ -1,43 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Api\\Microzone.SprintManager.Api.csproj": {}
+    "/workspace/backend/Microzone.SprintManager.Api/Microzone.SprintManager.Api.csproj": {}
   },
   "projects": {
-    "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Api\\Microzone.SprintManager.Api.csproj": {
+    "/workspace/backend/Microzone.SprintManager.Api/Microzone.SprintManager.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Api\\Microzone.SprintManager.Api.csproj",
+        "projectUniqueName": "/workspace/backend/Microzone.SprintManager.Api/Microzone.SprintManager.Api.csproj",
         "projectName": "Microzone.SprintManager.Api",
-        "projectPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Api\\Microzone.SprintManager.Api.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Api\\obj\\",
+        "projectPath": "/workspace/backend/Microzone.SprintManager.Api/Microzone.SprintManager.Api.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/workspace/backend/Microzone.SprintManager.Api/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Application\\Microzone.SprintManager.Application.csproj": {
-                "projectPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Application\\Microzone.SprintManager.Application.csproj"
+              "/workspace/backend/Microzone.SprintManager.Application/Microzone.SprintManager.Application.csproj": {
+                "projectPath": "/workspace/backend/Microzone.SprintManager.Application/Microzone.SprintManager.Application.csproj"
               },
-              "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Infrastructure\\Microzone.SprintManager.Infrastructure.csproj": {
-                "projectPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Infrastructure\\Microzone.SprintManager.Infrastructure.csproj"
+              "/workspace/backend/Microzone.SprintManager.Infrastructure/Microzone.SprintManager.Infrastructure.csproj": {
+                "projectPath": "/workspace/backend/Microzone.SprintManager.Infrastructure/Microzone.SprintManager.Infrastructure.csproj"
               }
             }
           }
@@ -96,41 +89,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.315/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Application\\Microzone.SprintManager.Application.csproj": {
+    "/workspace/backend/Microzone.SprintManager.Application/Microzone.SprintManager.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Application\\Microzone.SprintManager.Application.csproj",
+        "projectUniqueName": "/workspace/backend/Microzone.SprintManager.Application/Microzone.SprintManager.Application.csproj",
         "projectName": "Microzone.SprintManager.Application",
-        "projectPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Application\\Microzone.SprintManager.Application.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Application\\obj\\",
+        "projectPath": "/workspace/backend/Microzone.SprintManager.Application/Microzone.SprintManager.Application.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/workspace/backend/Microzone.SprintManager.Application/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\Microzone.SprintManager.Domain.csproj": {
-                "projectPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\Microzone.SprintManager.Domain.csproj"
+              "/workspace/backend/Microzone.SprintManager.Domain/Microzone.SprintManager.Domain.csproj": {
+                "projectPath": "/workspace/backend/Microzone.SprintManager.Domain/Microzone.SprintManager.Domain.csproj"
               }
             }
           }
@@ -166,33 +152,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.315/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\Microzone.SprintManager.Domain.csproj": {
+    "/workspace/backend/Microzone.SprintManager.Domain/Microzone.SprintManager.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\Microzone.SprintManager.Domain.csproj",
+        "projectUniqueName": "/workspace/backend/Microzone.SprintManager.Domain/Microzone.SprintManager.Domain.csproj",
         "projectName": "Microzone.SprintManager.Domain",
-        "projectPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\Microzone.SprintManager.Domain.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\obj\\",
+        "projectPath": "/workspace/backend/Microzone.SprintManager.Domain/Microzone.SprintManager.Domain.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/workspace/backend/Microzone.SprintManager.Domain/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -232,44 +211,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.315/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Infrastructure\\Microzone.SprintManager.Infrastructure.csproj": {
+    "/workspace/backend/Microzone.SprintManager.Infrastructure/Microzone.SprintManager.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Infrastructure\\Microzone.SprintManager.Infrastructure.csproj",
+        "projectUniqueName": "/workspace/backend/Microzone.SprintManager.Infrastructure/Microzone.SprintManager.Infrastructure.csproj",
         "projectName": "Microzone.SprintManager.Infrastructure",
-        "projectPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Infrastructure\\Microzone.SprintManager.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Infrastructure\\obj\\",
+        "projectPath": "/workspace/backend/Microzone.SprintManager.Infrastructure/Microzone.SprintManager.Infrastructure.csproj",
+        "packagesPath": "/root/.nuget/packages/",
+        "outputPath": "/workspace/backend/Microzone.SprintManager.Infrastructure/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Application\\Microzone.SprintManager.Application.csproj": {
-                "projectPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Application\\Microzone.SprintManager.Application.csproj"
+              "/workspace/backend/Microzone.SprintManager.Application/Microzone.SprintManager.Application.csproj": {
+                "projectPath": "/workspace/backend/Microzone.SprintManager.Application/Microzone.SprintManager.Application.csproj"
               },
-              "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\Microzone.SprintManager.Domain.csproj": {
-                "projectPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\Microzone.SprintManager.Domain.csproj"
+              "/workspace/backend/Microzone.SprintManager.Domain/Microzone.SprintManager.Domain.csproj": {
+                "projectPath": "/workspace/backend/Microzone.SprintManager.Domain/Microzone.SprintManager.Domain.csproj"
               }
             }
           }
@@ -336,7 +308,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.315/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

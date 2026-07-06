@@ -66,6 +66,15 @@ export class GroomingStateService {
     this.revealState.set(null);
   }
 
+  updateRevealedVote(userId: number, weightValue: number) {
+    const nextReveal = this.patchRevealVote(this.pendingReveal, userId, weightValue);
+    this.pendingReveal = nextReveal;
+
+    if (this.revealState()) {
+      this.revealState.set(this.patchRevealVote(this.revealState(), userId, weightValue));
+    }
+  }
+
   private handleSessionUpdated(session: GroomingSession) {
     const previous = this.sessionState();
     this.sessionState.set(session);
@@ -123,5 +132,41 @@ export class GroomingStateService {
       clearInterval(this.countdownTimer);
       this.countdownTimer = null;
     }
+  }
+
+  private patchRevealVote(reveal: RevealVotes | null, userId: number, weightValue: number): RevealVotes | null {
+    if (!reveal) {
+      return null;
+    }
+
+    const votes = reveal.votes.map((vote) => (
+      vote.userId === userId ? { ...vote, weightValue } : vote
+    ));
+    const counts = new Map<number, number>();
+
+    for (const vote of votes) {
+      counts.set(vote.weightValue, (counts.get(vote.weightValue) ?? 0) + 1);
+    }
+
+    let highestCount = 0;
+    let majorityWeight: number | null = null;
+    let tie = false;
+
+    for (const [candidateWeight, count] of counts.entries()) {
+      if (count > highestCount) {
+        highestCount = count;
+        majorityWeight = candidateWeight;
+        tie = false;
+      } else if (count === highestCount) {
+        tie = true;
+      }
+    }
+
+    return {
+      ...reveal,
+      votes,
+      isTie: tie,
+      majorityWeight: tie ? null : majorityWeight
+    };
   }
 }
