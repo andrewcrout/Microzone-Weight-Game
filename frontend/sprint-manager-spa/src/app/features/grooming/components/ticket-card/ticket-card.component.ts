@@ -185,16 +185,16 @@ import { getTicketCardAssets } from '../card-asset-map';
       color: #f7f3ea;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     }
+    
     .comment-badge {
-      grid-column: 1;
-      grid-row: 1;
-      justify-self: center;
-      align-self: center;
+      position: absolute;
+      transform: translatey(22px) translatex(8px);
       font-size: 1.08rem;
       font-weight: 700;
       padding-right: 0.12rem;
       padding-bottom: 0.08rem;
     }
+
     .comment-flag {
       grid-column: 1;
       grid-row: 2;
@@ -217,13 +217,28 @@ import { getTicketCardAssets } from '../card-asset-map';
     .back-ticket-bar,
     .comments-title-bar {
       display: flex;
-      align-items: center;
       min-width: 0;
     }
+
+    .system-bar {
+      position: absolute;
+      transform: translatey(100px) translatex(80px);
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #fff;
+      text-shadow: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
     .title-bar {
-      grid-column: 1 / -1;
-      grid-row: 1;
-      padding: 0.22rem 1rem 0 0.2rem;
+      position: absolute;
+      transform: translatey(45px) translatex(65px);
+      width: 210px;
+      height: 40px;
       color: #f6f0e7;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
     }
@@ -232,25 +247,13 @@ import { getTicketCardAssets } from '../card-asset-map';
       width: 100%;
       font-size: 0.94rem;
       line-height: 1.08;
-      white-space: nowrap;
+      white-space: wrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .system-bar {
-      grid-column: 1 / -1;
-      grid-row: 2;
-      align-self: center;
-      padding: 0 1.45rem 0.15rem 1.18rem;
-      font-size: 0.62rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #2f2923;
-      text-shadow: none;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+
+
+    
     .labels-panel,
     .description-panel,
     .comments-panel {
