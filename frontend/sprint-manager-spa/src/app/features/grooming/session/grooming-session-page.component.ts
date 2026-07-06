@@ -34,6 +34,9 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
               <p class="eyebrow">Grooming Complete</p>
               <h2>{{ sprint()?.name }}</h2>
               <p>All sprint tickets have been reviewed for this session.</p>
+              <button class="complete-link" type="button" (click)="goToSprintTickets()">
+                Go to sprint tickets
+              </button>
             </section>
           }
         </div>
@@ -116,6 +119,13 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
                   [currentUserId]="currentUserId()"
                   (changeRequested)="beginVoteEdit()" />
               }
+            } @else {
+              <div class="complete-actions">
+                <p class="instruction">Grooming is complete. Continue to the sprint tickets page to assign developers and manage the sprint backlog.</p>
+                <button class="confirm" type="button" (click)="goToSprintTickets()">
+                  Open sprint tickets
+                </button>
+              </div>
             }
           </section>
         </div>
@@ -130,6 +140,7 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
     .round-meta, .session-header { display: flex; justify-content: space-between; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
     .round-meta span, .eyebrow, .instruction { color: #9fb6ca; }
     .session-panel, .complete-state { padding: 1.25rem; border-radius: 1.4rem; background: rgba(5, 12, 22, 0.56); border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(18px); }
+    .complete-state, .complete-actions { display: grid; gap: 1rem; align-content: start; }
     .weight-deck-panel { display: grid; gap: 1rem; }
     .deck-stage {
       position: relative;
@@ -167,6 +178,7 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
     .reveal, .confirm { background: #ffd08c; color: #08131f; }
     .remove { background: rgba(255,255,255,0.08); color: #f4f7fb; }
     .ghost { background: rgba(255,255,255,0.08); color: #f4f7fb; }
+    .complete-link { justify-self: start; background: #ffd08c; color: #08131f; }
     .nav-button { width: 100%; min-height: 3.5rem; font-size: 1rem; line-height: 1; }
     .actions-toggle { width: 100%; margin-top: 0; }
     .actions button, .actions-menu button { width: 100%; }
@@ -267,10 +279,6 @@ export class GroomingSessionPageComponent implements OnDestroy {
       if (session?.id === this.sessionId) {
         this.session.set(session);
         this.loadSprint(session.sprintId);
-
-        if (session.status === 'Completed') {
-          void this.router.navigate(['/sprints', session.sprintId, 'tickets']);
-        }
       }
     });
 
@@ -442,6 +450,13 @@ export class GroomingSessionPageComponent implements OnDestroy {
     this.groomingState.clearReveal();
     this.closeActionsMenu();
     this.api.removeTicketFromGrooming(this.sessionId, ticketId).subscribe(() => this.loadSession());
+  }
+
+  goToSprintTickets() {
+    const sprintId = this.session()?.sprintId ?? this.sprint()?.id;
+    if (sprintId) {
+      void this.router.navigate(['/sprints', sprintId, 'tickets']);
+    }
   }
 
   ngOnDestroy() {

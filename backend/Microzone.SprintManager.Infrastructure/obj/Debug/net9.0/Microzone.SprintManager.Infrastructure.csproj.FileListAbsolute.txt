@@ -38,3 +38,23 @@ C:/GitHub/Microzone Weight Game/backend/Microzone.SprintManager.Infrastructure/o
 /workspace/backend/Microzone.SprintManager.Infrastructure/obj/Debug/net9.0/Microzone.SprintManager.Infrastructure.pdb
 /workspace/backend/Microzone.SprintManager.Infrastructure/obj/Debug/net9.0/Microzone.SprintManager.Infrastructure.genruntimeconfig.cache
 /workspace/backend/Microzone.SprintManager.Infrastructure/obj/Debug/net9.0/ref/Microzone.SprintManager.Infrastructure.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\bin\Debug\net9.0\Microzone.SprintManager.Infrastructure.deps.json
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\bin\Debug\net9.0\Microzone.SprintManager.Infrastructure.runtimeconfig.json
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\bin\Debug\net9.0\Microzone.SprintManager.Infrastructure.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\bin\Debug\net9.0\Microzone.SprintManager.Infrastructure.pdb
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\bin\Debug\net9.0\Microzone.SprintManager.Application.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\bin\Debug\net9.0\Microzone.SprintManager.Domain.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\bin\Debug\net9.0\Microzone.SprintManager.Domain.pdb
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\bin\Debug\net9.0\Microzone.SprintManager.Application.pdb
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\Microzone.SprintManager.Infrastructure.csproj.AssemblyReference.cache
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\Microzone.SprintManager.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\Microzone.SprintManager.Infrastructure.AssemblyInfoInputs.cache
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\Microzone.SprintManager.Infrastructure.AssemblyInfo.cs
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\Microzone.SprintManager.Infrastructure.csproj.CoreCompileInputs.cache
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\Microzone.SprintManager.Infrastructure.sourcelink.json
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\Microzon.BB5E9909.Up2Date
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\Microzone.SprintManager.Infrastructure.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\refint\Microzone.SprintManager.Infrastructure.dll
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\Microzone.SprintManager.Infrastructure.pdb
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\Microzone.SprintManager.Infrastructure.genruntimeconfig.cache
+C:\GitHub\Microzone Weight Game\backend\Microzone.SprintManager.Infrastructure\obj\Debug\net9.0\ref\Microzone.SprintManager.Infrastructure.dll

@@ -72,7 +72,11 @@ public sealed class TrelloIntegrationService(
         if (string.IsNullOrWhiteSpace(_options.ApiKey) || string.IsNullOrWhiteSpace(_options.Token))
             throw new InvalidOperationException("Trello API credentials are missing. Configure TRELLO_API_KEY and TRELLO_TOKEN before importing sprint tickets.");
 
-        var sprint = await dbContext.Sprints.Include(x => x.Tickets).FirstAsync(x => x.Id == request.SprintId, cancellationToken);
+        var sprint = await dbContext.Sprints
+            .Include(x => x.Tickets).ThenInclude(x => x.Labels)
+            .Include(x => x.Tickets).ThenInclude(x => x.Comments)
+            .Include(x => x.Tickets).ThenInclude(x => x.Assignees)
+            .FirstAsync(x => x.Id == request.SprintId, cancellationToken);
         sprint.Label = request.Label;
 
         var boardConfigs = await dbContext.TrelloBoardConfigs.Where(x => x.IsEnabled).ToListAsync(cancellationToken);
@@ -85,15 +89,14 @@ public sealed class TrelloIntegrationService(
 
         var cards = importResult.Cards;
 
-        foreach (var existing in sprint.Tickets.ToList())
-        {
-            dbContext.SprintTickets.Remove(existing);
-        }
-
         var insertedCount = 0;
         var boardLookup = boardConfigs
             .GroupBy(x => x.BoardId)
             .ToDictionary(group => group.Key, group => group.First());
+        var existingByTrelloCardId = sprint.Tickets
+            .GroupBy(ticket => ticket.TrelloCardId)
+            .ToDictionary(group => group.Key, group => group.First());
+        var importedCardIds = new HashSet<string>(StringComparer.Ordinal);
 
         foreach (var card in cards)
         {
@@ -104,8 +107,37 @@ public sealed class TrelloIntegrationService(
             if (matchedConfig is null)
                 continue;
 
+            importedCardIds.Add(card.CardId);
+
+            if (existingByTrelloCardId.TryGetValue(card.CardId, out var existingTicket))
+            {
+                UpdateImportedCard(existingTicket, card, matchedConfig.SystemName ?? "PROMAN GENERAL");
+                continue;
+            }
+
             dbContext.SprintTickets.Add(MapImportedCard(card, sprint.Id, matchedConfig.SystemName ?? "PROMAN GENERAL"));
             insertedCount++;
+        }
+
+        var obsoleteTicketIds = sprint.Tickets
+            .Where(ticket => !importedCardIds.Contains(ticket.TrelloCardId))
+            .Select(ticket => ticket.Id)
+            .ToArray();
+
+        if (obsoleteTicketIds.Length > 0)
+        {
+            var ticketIdsWithVotes = await dbContext.GroomingVotes
+                .Where(vote => obsoleteTicketIds.Contains(vote.SprintTicketId))
+                .Select(vote => vote.SprintTicketId)
+                .Distinct()
+                .ToListAsync(cancellationToken);
+
+            foreach (var obsoleteTicket in sprint.Tickets
+                         .Where(ticket => obsoleteTicketIds.Contains(ticket.Id) && !ticketIdsWithVotes.Contains(ticket.Id))
+                         .ToList())
+            {
+                dbContext.SprintTickets.Remove(obsoleteTicket);
+            }
         }
 
         dbContext.TrelloImportRuns.Add(new TrelloImportRun
@@ -147,6 +179,41 @@ public sealed class TrelloIntegrationService(
         }).ToList();
 
         return ticket;
+    }
+
+    private static void UpdateImportedCard(SprintTicket ticket, TrelloCardImportDto card, string systemName)
+    {
+        ticket.BoardId = card.BoardId;
+        ticket.ListId = card.ListId;
+        ticket.Title = card.Title;
+        ticket.Description = card.Description;
+        ticket.ShortUrl = card.ShortUrl;
+        ticket.SystemName = systemName;
+        ticket.DueDateUtc = card.DueDateUtc;
+        ticket.LastActivityAtUtc = card.LastActivityAtUtc;
+
+        ticket.Labels.Clear();
+        foreach (var label in card.Labels)
+        {
+            ticket.Labels.Add(new SprintTicketLabel { Name = label, Color = "blue" });
+        }
+
+        ticket.Comments.Clear();
+        foreach (var comment in card.Comments)
+        {
+            ticket.Comments.Add(new SprintTicketComment { AuthorName = comment.AuthorName, Text = comment.Text });
+        }
+
+        ticket.Assignees.Clear();
+        foreach (var member in card.Members)
+        {
+            ticket.Assignees.Add(new SprintTicketAssignee
+            {
+                TrelloMemberId = member.MemberId,
+                DisplayName = member.DisplayName,
+                Email = member.Email
+            });
+        }
     }
 
     private async Task<TrelloCardImportResult> GetLiveCardsAsync(IReadOnlyList<TrelloBoardConfig> boardConfigs, string label, CancellationToken cancellationToken)

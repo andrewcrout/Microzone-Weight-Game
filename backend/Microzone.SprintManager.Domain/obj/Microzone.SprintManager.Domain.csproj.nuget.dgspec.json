@@ -1,25 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "/workspace/backend/Microzone.SprintManager.Domain/Microzone.SprintManager.Domain.csproj": {}
+    "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\Microzone.SprintManager.Domain.csproj": {}
   },
   "projects": {
-    "/workspace/backend/Microzone.SprintManager.Domain/Microzone.SprintManager.Domain.csproj": {
+    "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\Microzone.SprintManager.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/workspace/backend/Microzone.SprintManager.Domain/Microzone.SprintManager.Domain.csproj",
+        "projectUniqueName": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\Microzone.SprintManager.Domain.csproj",
         "projectName": "Microzone.SprintManager.Domain",
-        "projectPath": "/workspace/backend/Microzone.SprintManager.Domain/Microzone.SprintManager.Domain.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/workspace/backend/Microzone.SprintManager.Domain/obj/",
+        "projectPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\Microzone.SprintManager.Domain.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\Microzone Weight Game\\backend\\Microzone.SprintManager.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -59,7 +66,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.315/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.314/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
