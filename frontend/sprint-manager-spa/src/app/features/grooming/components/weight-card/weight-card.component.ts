@@ -24,9 +24,8 @@ import { getWeightCardAssets } from '../card-asset-map';
           <div class="back-overlay"></div>
           <div class="back-copy">
             <strong class="corner-value">{{ card().weightValue }}</strong>
-            <span class="top-bar-label">Weight Deck</span>
+            <span class="top-bar-label">{{ card().timeLabel }}</span>
             <div class="center-panel-copy">
-              <h4>{{ card().timeLabel }}</h4>
               <p>{{ card().estimatedTime }}</p>
               <small>{{ card().element }} · {{ card().line }}</small>
             </div>
@@ -121,9 +120,12 @@ import { getWeightCardAssets } from '../card-asset-map';
     }
     .corner-value {
       position: absolute;
-      top: 8.4%;
-      left: 9.4%;
-      width: 2rem;
+      top: 2.8%;
+      left: 4.2%;
+      width: 2.2rem;
+      height: 2.2rem;
+      display: grid;
+      place-items: center;
       text-align: center;
       color: #f5fbff;
       line-height: 1;
@@ -131,41 +133,38 @@ import { getWeightCardAssets } from '../card-asset-map';
     }
     .top-bar-label {
       position: absolute;
-      top: 13.2%;
-      left: 18%;
-      right: 11%;
+      top: 5.7%;
+      left: 21%;
+      right: 8%;
       display: flex;
       align-items: center;
       color: #f5fbff;
-      font-size: 0.72rem;
+      font-size: 0.84rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .center-panel-copy {
       position: absolute;
       left: 11%;
       right: 11%;
-      top: 51.5%;
+      top: 69%;
       bottom: 11%;
       display: grid;
       align-content: start;
-      gap: 0.3rem;
+      gap: 0.22rem;
       color: #eef5fb;
       text-align: left;
     }
-    .center-panel-copy h4 {
-      font-size: 0.92rem;
-      font-weight: 700;
-    }
     .center-panel-copy p {
-      font-size: 0.78rem;
+      font-size: 0.82rem;
+      font-weight: 700;
       color: #dde8f2;
     }
     .center-panel-copy small {
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       line-height: 1.25;
       color: #cddaea;
     }

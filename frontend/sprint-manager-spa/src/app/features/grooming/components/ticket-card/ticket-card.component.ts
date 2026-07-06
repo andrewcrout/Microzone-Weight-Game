@@ -72,8 +72,6 @@ import { getTicketCardAssets } from '../card-asset-map';
                 <strong>{{ ticket().weightValue ?? '-' }}</strong>
               </div>
             </section>
-
-            <div class="assignee-strip">{{ ticket().assignees.join(', ') || 'Unassigned' }}</div>
           </div>
         </section>
 
@@ -84,13 +82,21 @@ import { getTicketCardAssets } from '../card-asset-map';
 
           <div class="overlay comments-overlay"></div>
           <div class="back-layout">
-            <div class="message-medallion" aria-hidden="true">
-              <svg viewBox="0 0 24 24" focusable="false">
-                <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v7A2.5 2.5 0 0 1 17.5 15H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 12.5z"/>
-              </svg>
-            </div>
+            <div class="back-count">{{ comments().length }}</div>
 
-            <header class="comments-title-bar">COMMENTS</header>
+            <header class="back-ticket-bar">
+              <span class="back-ticket-title">{{ ticket().title }}</span>
+            </header>
+
+            <div class="back-section-bar">
+              <div class="message-medallion" aria-hidden="true">
+                <svg viewBox="0 0 24 24" focusable="false">
+                  <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v7A2.5 2.5 0 0 1 17.5 15H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 12.5z"/>
+                </svg>
+              </div>
+
+              <header class="comments-title-bar">COMMENTS</header>
+            </div>
 
             <section class="comments-panel">
               @if (comments().length) {
@@ -170,7 +176,7 @@ import { getTicketCardAssets } from '../card-asset-map';
       padding: 1rem 0.95rem 0.7rem;
     }
     .comment-badge,
-    .message-medallion {
+    .back-count {
       display: grid;
       place-items: center;
       width: 3.8rem;
@@ -178,12 +184,12 @@ import { getTicketCardAssets } from '../card-asset-map';
       border-radius: 999px;
       color: #f7f3ea;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-      justify-self: center;
-      align-self: center;
     }
     .comment-badge {
       grid-column: 1;
       grid-row: 1;
+      justify-self: center;
+      align-self: center;
       font-size: 1.08rem;
       font-weight: 700;
       padding-right: 0.12rem;
@@ -191,14 +197,13 @@ import { getTicketCardAssets } from '../card-asset-map';
     }
     .comment-flag {
       grid-column: 1;
-      grid-row: 2 / span 2;
-      width: 1.5rem;
-      height: 1.5rem;
-      justify-self: center;
-      align-self: start;
-      margin-top: 0.05rem;
-      margin-left: 0.08rem;
-      color: rgba(247, 243, 234, 0.88);
+      grid-row: 2;
+      width: 1.1rem;
+      height: 1.1rem;
+      justify-self: start;
+      align-self: center;
+      margin-left: 0.74rem;
+      color: rgba(247, 243, 234, 0.92);
     }
     .comment-flag svg,
     .message-medallion svg,
@@ -209,21 +214,21 @@ import { getTicketCardAssets } from '../card-asset-map';
     }
     .title-bar,
     .system-bar,
+    .back-ticket-bar,
     .comments-title-bar {
       display: flex;
       align-items: center;
       min-width: 0;
-      color: #f6f0e7;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
     }
     .title-bar {
       grid-column: 1 / -1;
       grid-row: 1;
-      padding: 0.2rem 1rem 0 1.2rem;
-      font-size: 0.94rem;
+      padding: 0.22rem 1rem 0 0.2rem;
+      color: #f6f0e7;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
     }
     .title-bar h3 {
-      margin: 0 0 0 0.72rem;
+      margin: 0 0 0 0.86rem;
       width: 100%;
       font-size: 0.94rem;
       line-height: 1.08;
@@ -235,7 +240,7 @@ import { getTicketCardAssets } from '../card-asset-map';
       grid-column: 1 / -1;
       grid-row: 2;
       align-self: center;
-      padding: 0 1.45rem 0.15rem 1.8rem;
+      padding: 0 1.45rem 0.15rem 1.18rem;
       font-size: 0.62rem;
       font-weight: 600;
       letter-spacing: 0.05em;
@@ -256,7 +261,7 @@ import { getTicketCardAssets } from '../card-asset-map';
       grid-column: 1 / -1;
       grid-row: 4;
       margin: 0 1.1rem 0.1rem 1rem;
-      padding: 0.6rem 0.8rem 0.15rem 0.95rem;
+      padding: 0.2rem 0.8rem 0.15rem 0.34rem;
       display: flex;
       gap: 0.35rem;
       flex-wrap: wrap;
@@ -282,7 +287,7 @@ import { getTicketCardAssets } from '../card-asset-map';
       grid-column: 1 / -1;
       grid-row: 5;
       margin: 0 1.12rem 0 1rem;
-      padding: 0.45rem 0.8rem 0.4rem 0.95rem;
+      padding: 0.02rem 0.8rem 0.4rem 0.42rem;
     }
     .description-copy {
       height: 100%;
@@ -337,40 +342,59 @@ import { getTicketCardAssets } from '../card-asset-map';
       text-overflow: ellipsis;
     }
     .stat-label { display: none; }
-    .assignee-strip {
-      grid-column: 1 / -1;
-      grid-row: 7;
-      align-self: end;
-      padding: 0 0.9rem 0 1rem;
-      color: rgba(237, 231, 220, 0.9);
-      font-size: 0.72rem;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
-    }
     .back-layout {
       position: relative;
       padding: 1.15rem 1rem 1.1rem;
     }
+    .back-count {
+      position: absolute;
+      top: 7.4%;
+      left: 7.6%;
+      font-size: 1rem;
+      font-weight: 700;
+      padding-right: 0.08rem;
+      padding-bottom: 0.08rem;
+    }
+    .back-ticket-bar {
+      position: absolute;
+      top: 11.1%;
+      left: 14%;
+      right: 11%;
+      color: #f4efe8;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+    }
+    .back-ticket-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.08;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .back-section-bar {
+      position: absolute;
+      top: 34.5%;
+      left: 10.2%;
+      right: 10.2%;
+      height: 6.2%;
+    }
     .message-medallion {
       position: absolute;
-      top: 7.8%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 3rem;
-      height: 3rem;
-      color: rgba(244, 239, 233, 0.9);
+      left: 5.8%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1rem;
+      height: 1rem;
+      color: rgba(244, 239, 233, 0.92);
     }
     .comments-title-bar {
       position: absolute;
-      top: 34.1%;
-      left: 14%;
-      right: 14%;
-      justify-content: center;
-      padding: 0 1rem 0.1rem;
-      font-size: 0.95rem;
+      left: 12.8%;
+      right: 10%;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 0;
+      font-size: 0.8rem;
       font-weight: 800;
       letter-spacing: 0.12em;
       text-transform: uppercase;
@@ -379,12 +403,12 @@ import { getTicketCardAssets } from '../card-asset-map';
     }
     .comments-panel {
       position: absolute;
-      top: 58.8%;
+      top: 43.5%;
       left: 10.5%;
       right: 10.5%;
       bottom: 12.2%;
       margin: 0;
-      padding: 0.7rem 0.85rem 0.8rem;
+      padding: 0.8rem 0.85rem 0.8rem;
     }
     .comments-panel ul {
       height: 100%;

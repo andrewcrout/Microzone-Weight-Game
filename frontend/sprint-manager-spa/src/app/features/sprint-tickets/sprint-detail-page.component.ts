@@ -35,54 +35,59 @@ import { GroomingSession, SprintDetail, Ticket, User } from '../../shared/models
 
         <input [value]="search()" (input)="onSearch($any($event.target).value)" placeholder="Search tickets" />
 
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>System</th>
-              <th>Labels</th>
-              <th>Assignees</th>
-              <th>Comments</th>
-              <th>Weight</th>
-              <th>Grooming</th>
-              <th>Work status</th>
-              <th>Assignment</th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (ticket of filteredTickets(); track ticket.id) {
+        <div class="table-wrap">
+          <table>
+            <thead>
               <tr>
-                <td><a [href]="ticket.shortUrl" target="_blank">{{ ticket.title }}</a></td>
-                <td>{{ ticket.systemName }}</td>
-                <td>{{ ticket.labels.join(', ') }}</td>
-                <td>{{ ticket.assignees.join(', ') || 'Unassigned' }}</td>
-                <td>{{ ticket.commentCount }}</td>
-                <td>{{ ticket.weightValue || '-' }}</td>
-                <td>{{ ticket.groomingStatus }}</td>
-                <td>{{ ticket.workStatus }}</td>
-                <td>
-                  <div class="assign-cell">
-                    @if (auth.isAdmin()) {
-                      <select [value]="selectedAssignees()[ticket.id] || ''" (change)="selectAssignee(ticket.id, $any($event.target).value)">
-                        <option value="">Choose developer</option>
-                        @for (user of assignableUsers(); track user.id) {
-                          <option [value]="user.id">{{ user.displayName }}</option>
-                        }
-                      </select>
-                      <button type="button" class="secondary assign-button" [disabled]="!selectedAssignees()[ticket.id]" (click)="assignTicket(ticket)">
-                        Assign
-                      </button>
-                    } @else {
-                      <button type="button" class="secondary assign-button" (click)="assignSelf(ticket)">
-                        Assign to me
-                      </button>
-                    }
-                  </div>
-                </td>
+                <th>Title</th>
+                <th>System</th>
+                <th>Labels</th>
+                <th>Assignees</th>
+                <th>Comments</th>
+                <th>Weight</th>
+                <th>Grooming</th>
+                <th>Work status</th>
+                <th>Assignment</th>
               </tr>
-            }
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              @for (ticket of filteredTickets(); track ticket.id) {
+                <tr>
+                  <td><a [href]="ticket.shortUrl" target="_blank">{{ ticket.title }}</a></td>
+                  <td>{{ ticket.systemName }}</td>
+                  <td>{{ ticket.labels.join(', ') }}</td>
+                  <td>{{ ticket.assignees.join(', ') || 'Unassigned' }}</td>
+                  <td>{{ ticket.commentCount }}</td>
+                  <td>{{ ticket.weightValue || '-' }}</td>
+                  <td>{{ ticket.groomingStatus }}</td>
+                  <td>{{ ticket.workStatus }}</td>
+                  <td>
+                    <div class="assign-cell">
+                      @if (auth.isAdmin()) {
+                        <button type="button" class="secondary assign-button" (click)="assignSelf(ticket)">
+                          Self assign
+                        </button>
+                        <select [value]="selectedAssignees()[ticket.id] || ''" (change)="selectAssignee(ticket.id, $any($event.target).value)">
+                          <option value="">Choose developer</option>
+                          @for (user of assignableUsers(); track user.id) {
+                            <option [value]="user.id">{{ user.displayName }}</option>
+                          }
+                        </select>
+                        <button type="button" class="secondary assign-button" [disabled]="!selectedAssignees()[ticket.id]" (click)="assignTicket(ticket)">
+                          Assign
+                        </button>
+                      } @else {
+                        <button type="button" class="secondary assign-button" (click)="assignSelf(ticket)">
+                          Assign to me
+                        </button>
+                      }
+                    </div>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
       </section>
     }
   `,
@@ -93,7 +98,10 @@ import { GroomingSession, SprintDetail, Ticket, User } from '../../shared/models
     .eyebrow, p { color: #9fb6ca; }
     .session-hint { margin-top: 0.75rem; }
     input { width: 100%; margin: 1rem 0; padding: 0.85rem 1rem; border-radius: 0.9rem; background: #0f1d2d; border: 1px solid rgba(255,255,255,0.08); color: inherit; }
+    .table-wrap { width: 100%; overflow-x: auto; overflow-y: hidden; }
+    .table-wrap::-webkit-scrollbar { height: 0.8rem; }
     table { width: 100%; border-collapse: collapse; }
+    table { min-width: 76rem; }
     th, td { padding: 0.85rem; border-bottom: 1px solid rgba(255,255,255,0.08); text-align: left; vertical-align: top; }
     .assign-cell { display: grid; gap: 0.5rem; min-width: 11rem; }
     select { width: 100%; padding: 0.75rem 0.9rem; border-radius: 0.9rem; background: #0f1d2d; border: 1px solid rgba(255,255,255,0.08); color: inherit; }
