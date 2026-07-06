@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Json;
 using Microzone.SprintManager.Application.DTOs;
 using Microzone.SprintManager.Application.Interfaces;
@@ -14,6 +15,7 @@ public sealed class TrelloIntegrationService(
     IHttpClientFactory httpClientFactory,
     IOptions<TrelloOptions> options) : ITrelloIntegrationService
 {
+    private const string DefaultTrelloApiBaseUrl = "https://api.trello.com/1";
     private readonly TrelloOptions _options = options.Value;
 
     public async Task<IReadOnlyList<TrelloBoardConfigDto>> GetBoardConfigsAsync(CancellationToken cancellationToken = default) =>
@@ -77,7 +79,11 @@ public sealed class TrelloIntegrationService(
         if (boardConfigs.Count == 0)
             throw new InvalidOperationException("No enabled Trello boards are configured for import.");
 
-        var cards = await GetLiveCardsAsync(boardConfigs, request.Label, cancellationToken);
+        var importResult = await GetLiveCardsAsync(boardConfigs, request.Label, cancellationToken);
+        if (importResult.Cards.Count == 0 && importResult.Failures.Count > 0)
+            throw new InvalidOperationException($"Unable to import from any enabled Trello board. {string.Join(" ", importResult.Failures)}");
+
+        var cards = importResult.Cards;
 
         foreach (var existing in sprint.Tickets.ToList())
         {
@@ -143,15 +149,29 @@ public sealed class TrelloIntegrationService(
         return ticket;
     }
 
-    private async Task<List<TrelloCardImportDto>> GetLiveCardsAsync(IReadOnlyList<TrelloBoardConfig> boardConfigs, string label, CancellationToken cancellationToken)
+    private async Task<TrelloCardImportResult> GetLiveCardsAsync(IReadOnlyList<TrelloBoardConfig> boardConfigs, string label, CancellationToken cancellationToken)
     {
         var httpClient = httpClientFactory.CreateClient("Trello");
         var result = new List<TrelloCardImportDto>();
+        var failures = new List<string>();
 
         foreach (var board in boardConfigs)
         {
-            var url = $"{board.BaseUrl}/boards/{board.BoardId}/cards?key={_options.ApiKey}&token={_options.Token}&members=true&actions=commentCard";
-            var cards = await httpClient.GetFromJsonAsync<List<TrelloApiCard>>(url, cancellationToken) ?? [];
+            var url = BuildBoardCardsUrl(board);
+            using var response = await httpClient.GetAsync(url, cancellationToken);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                if (ShouldSkipBoard(response.StatusCode))
+                {
+                    failures.Add($"Board '{board.Name}' ({board.BoardId}) returned {(int)response.StatusCode} {response.ReasonPhrase} and was skipped.");
+                    continue;
+                }
+
+                response.EnsureSuccessStatusCode();
+            }
+
+            var cards = await response.Content.ReadFromJsonAsync<List<TrelloApiCard>>(cancellationToken: cancellationToken) ?? [];
 
             result.AddRange(cards
                 .Where(card => card.Labels.Any(x => string.Equals(x.Name, label, StringComparison.OrdinalIgnoreCase)))
@@ -169,8 +189,30 @@ public sealed class TrelloIntegrationService(
                     card.DateLastActivity)));
         }
 
-        return result;
+        return new TrelloCardImportResult(result, failures);
     }
+
+    private static bool ShouldSkipBoard(HttpStatusCode statusCode) =>
+        statusCode is HttpStatusCode.Forbidden or HttpStatusCode.NotFound or HttpStatusCode.Unauthorized;
+
+    private string BuildBoardCardsUrl(TrelloBoardConfig board)
+    {
+        var baseUrl = NormalizeApiBaseUrl(board.BaseUrl);
+        return $"{baseUrl}/boards/{Uri.EscapeDataString(board.BoardId)}/cards?key={Uri.EscapeDataString(_options.ApiKey)}&token={Uri.EscapeDataString(_options.Token)}&members=true&actions=commentCard";
+    }
+
+    private static string NormalizeApiBaseUrl(string? configuredBaseUrl)
+    {
+        if (string.IsNullOrWhiteSpace(configuredBaseUrl))
+            return DefaultTrelloApiBaseUrl;
+
+        var trimmed = configuredBaseUrl.Trim().TrimEnd('/');
+        return trimmed.Contains("/1", StringComparison.Ordinal)
+            ? trimmed
+            : DefaultTrelloApiBaseUrl;
+    }
+
+    private sealed record TrelloCardImportResult(List<TrelloCardImportDto> Cards, List<string> Failures);
     private sealed record TrelloApiCard(string Id, string IdList, string Name, string Desc, string ShortUrl, List<TrelloApiLabel> Labels, List<TrelloApiAction> Actions, List<TrelloApiMember> Members, DateTime? Due, DateTime DateLastActivity);
     private sealed record TrelloApiLabel(string Name);
     private sealed record TrelloApiAction(TrelloApiActionData? Data, TrelloApiMember? MemberCreator);
