@@ -1,0 +1,18 @@
+# Initial cross-project graph: code structure only. Build document/media graphs separately when needed.
+graphify-out/
+*.pdf
+*.docx
+*.doc
+*.xlsx
+*.xls
+*.pptx
+*.ppt
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.mp4
+*.mov
+*.mp3
+*.wav

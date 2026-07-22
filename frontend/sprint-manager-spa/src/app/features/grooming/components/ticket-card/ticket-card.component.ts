@@ -8,13 +8,14 @@ import { getTicketCardAssets } from '../card-asset-map';
   standalone: true,
   imports: [MarkdownPipe],
   template: `
-    <button
-      type="button"
-      class="card-shell"
-      [attr.aria-label]="cardAriaLabel()"
-      [attr.aria-pressed]="showingBack()"
-      (click)="toggleCardFace()">
-      <div class="card-frame">
+    <div class="card-shell">
+      <button
+        type="button"
+        class="card-flip-button"
+        [attr.aria-label]="cardAriaLabel()"
+        [attr.aria-pressed]="showingBack()"
+        (click)="toggleCardFace()">
+        <div class="card-frame">
         <div class="card-rotor" [style.transform]="'rotateY(' + rotationDegrees() + 'deg)'">
           <section class="face front">
             @if (!frontArtMissing()) {
@@ -50,26 +51,13 @@ import { getTicketCardAssets } from '../card-asset-map';
               </section>
 
               <section class="stat-box time-box">
-                <div class="stat-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" focusable="false">
-                    <path d="M12 6.25a.75.75 0 0 1 .75.75v4.19l2.78 1.6a.75.75 0 1 1-.75 1.3l-3.15-1.82A.75.75 0 0 1 11.25 12V7a.75.75 0 0 1 .75-.75z"/>
-                    <path d="M12 2.5a9.5 9.5 0 1 1 0 19a9.5 9.5 0 0 1 0-19zm0 1.5a8 8 0 1 0 0 16a8 8 0 0 0 0-16z"/>
-                  </svg>
-                </div>
                 <div class="stat-copy">
-                  <span class="stat-label">Time</span>
                   <strong>{{ ticket().timeScore ?? '-' }}</strong>
                 </div>
               </section>
 
               <section class="stat-box weight-box">
-                <div class="stat-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" focusable="false">
-                    <path d="M12 4a3.25 3.25 0 0 0-3.25 3.25c0 .57.15 1.1.4 1.56H7.5a2 2 0 0 0-1.95 1.56L4.03 17.3A2 2 0 0 0 5.98 19.75h12.04a2 2 0 0 0 1.95-2.45l-1.52-6.93A2 2 0 0 0 16.5 8.8h-1.65c.25-.46.4-.99.4-1.56A3.25 3.25 0 0 0 12 4zm0 1.5a1.75 1.75 0 1 1 0 3.5a1.75 1.75 0 0 1 0-3.5z"/>
-                  </svg>
-                </div>
                 <div class="stat-copy">
-                  <span class="stat-label">Weight</span>
                   <strong>{{ ticket().weightValue ?? '-' }}</strong>
                 </div>
               </section>
@@ -95,8 +83,7 @@ import { getTicketCardAssets } from '../card-asset-map';
                     <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v7A2.5 2.5 0 0 1 17.5 15H10l-4.5 4v-4H6.5A2.5 2.5 0 0 1 4 12.5z"/>
                   </svg>
                 </div>
-
-                <header class="comments-title-bar">COMMENTS</header>
+                <header class="comments-title-bar">Comments</header>
               </div>
 
               <section class="comments-panel">
@@ -111,8 +98,54 @@ import { getTicketCardAssets } from '../card-asset-map';
             </div>
           </section>
         </div>
+        </div>
+      </button>
+
+      <button type="button" class="ticket-view-button" aria-label="View ticket details" (click)="openDetails($event)">
+        <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+          <path d="M12 4.5c4.63 0 8.45 3.02 9.75 7.2-1.3 4.18-5.12 7.2-9.75 7.2s-8.45-3.02-9.75-7.2C3.55 7.52 7.37 4.5 12 4.5zm0 1.5a5.7 5.7 0 1 0 0 11.4A5.7 5.7 0 0 0 12 6zm0 2.15a3.55 3.55 0 1 1 0 7.1a3.55 3.55 0 0 1 0-7.1z"/>
+        </svg>
+      </button>
+    </div>
+
+    @if (detailsOpen()) {
+      <div class="ticket-modal-backdrop" (click)="closeDetails()">
+        <section class="ticket-modal" role="dialog" aria-modal="true" aria-labelledby="ticket-details-title" (click)="$event.stopPropagation()">
+          <header class="ticket-modal-header">
+            <div>
+              <p class="ticket-modal-eyebrow">Ticket details</p>
+              <h2 id="ticket-details-title">{{ ticket().title }}</h2>
+              <div class="ticket-labels">
+                @for (label of ticket().labels; track label) {
+                  <span>{{ label }}</span>
+                } @empty {
+                  <span class="ticket-empty">No labels</span>
+                }
+              </div>
+            </div>
+            <button type="button" class="ticket-modal-close" (click)="closeDetails()">Close</button>
+          </header>
+
+          <div class="ticket-modal-content">
+            <section class="ticket-detail-section ticket-description">
+              <h3>Description</h3>
+              <div [innerHTML]="ticket().description | markdown"></div>
+            </section>
+
+            <section class="ticket-detail-section ticket-comments">
+              <h3>Comments</h3>
+              @if (comments().length) {
+                <ul>
+                  @for (comment of comments(); track comment) { <li>{{ comment }}</li> }
+                </ul>
+              } @else {
+                <p class="ticket-empty">No comments captured for this ticket.</p>
+              }
+            </section>
+          </div>
+        </section>
       </div>
-    </button>
+    }
   `,
   styles: [`
     :host {
@@ -124,16 +157,24 @@ import { getTicketCardAssets } from '../card-asset-map';
       --ticket-base-width: 21rem;
       --ticket-base-height: 34.5rem;
       --ticket-scale: 1.1;
+      position: relative;
       display: block;
       width: calc(var(--ticket-base-width) * var(--ticket-scale));
       height: calc(var(--ticket-base-height) * var(--ticket-scale));
       max-width: 100%;
       min-height: 0;
+      justify-self: center;
+      color: inherit;
+      text-align: left;
+    }
+    .card-flip-button {
+      display: block;
+      width: 100%;
+      height: 100%;
       padding: 0;
       border: 0;
       background: transparent;
       cursor: pointer;
-      justify-self: center;
       perspective: 1800px;
       color: inherit;
       text-align: left;
@@ -193,24 +234,19 @@ import { getTicketCardAssets } from '../card-asset-map';
       grid-template-rows: 4.2rem 2.45rem 1.95rem 5.8rem 11.35rem 3.8rem 1.4rem;
       padding: 1rem 0.95rem 0.7rem;
     }
-    .comment-badge,
-    .back-count {
+    .comment-badge {
       display: grid;
       place-items: center;
-      width: 3.8rem;
-      height: 3.8rem;
-      border-radius: 999px;
       color: #f7f3ea;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
     }
-    
     .comment-badge {
       position: absolute;
-      transform: translatey(22px) translatex(8px);
+      transform: translateY(22px) translateX(8px);
+      width: 3.8rem;
+      height: 3.8rem;
       font-size: 1.08rem;
       font-weight: 700;
-      padding-right: 0.12rem;
-      padding-bottom: 0.08rem;
     }
 
     .comment-flag {
@@ -224,8 +260,7 @@ import { getTicketCardAssets } from '../card-asset-map';
       color: rgba(247, 243, 234, 0.92);
     }
     .comment-flag svg,
-    .message-medallion svg,
-    .stat-icon svg {
+    .message-medallion svg {
       width: 100%;
       height: 100%;
       fill: currentColor;
@@ -233,28 +268,27 @@ import { getTicketCardAssets } from '../card-asset-map';
     .title-bar,
     .system-bar,
     .back-ticket-bar,
-    .comments-title-bar {
+    .comments-title-bar,
+    .back-section-bar {
       display: flex;
       min-width: 0;
     }
 
     .system-bar {
       position: absolute;
-      transform: translatey(100px) translatex(80px);
+      transform: translateY(100px) translateX(80px);
       font-size: 0.62rem;
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
       color: #fff;
-      text-shadow: none;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
     .title-bar {
       position: absolute;
-      transform: translatey(45px) translatex(65px);
+      transform: translateY(45px) translateX(65px);
       width: 210px;
       height: 40px;
       color: #f6f0e7;
@@ -265,13 +299,9 @@ import { getTicketCardAssets } from '../card-asset-map';
       width: 100%;
       font-size: 0.94rem;
       line-height: 1.08;
-      white-space: wrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-
-
-    
     .labels-panel,
     .description-panel,
     .comments-panel {
@@ -291,24 +321,22 @@ import { getTicketCardAssets } from '../card-asset-map';
     }
     .description-panel {
       position: absolute;
-      transform: translatey(260px) translatex(50px);
+      transform: translateY(260px) translateX(50px);
       height: 175px;
       width: 230px;
       margin: 0 1.12rem 0 1rem;
       padding: 0.02rem 0.8rem 0.4rem 0.42rem;
     }
-    
     .labels-panel {
       position: absolute;
-      transform: translatey(160px) translatex(70px);
+      transform: translateY(160px) translateX(70px);
       display: flex;
       height: 100px;
       width: 200px;
       gap: 0.35rem;
       flex-wrap: wrap;
       align-content: start;
-    } 
-
+    }
     .labels-panel span {
       display: inline-flex;
       align-items: center;
@@ -325,52 +353,62 @@ import { getTicketCardAssets } from '../card-asset-map';
       text-overflow: ellipsis;
     }
     .muted-chip { opacity: 0.8; }
-    
-    
     .description-copy :first-child { margin-top: 0; }
     .description-copy :last-child { margin-bottom: 0; }
+    .ticket-view-button {
+      position: absolute;
+      top: 3%;
+      right: 4%;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      padding: 0;
+      border: 1px solid rgba(244, 239, 233, 0.56);
+      border-radius: 999px;
+      background: rgba(8, 20, 31, 0.88);
+      color: #f4efe8;
+      box-shadow: 0 0.35rem 0.85rem rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+    }
+    .ticket-view-button:hover,
+    .ticket-view-button:focus-visible {
+      background: #17334b;
+      outline: 2px solid #d8b773;
+      outline-offset: 2px;
+    }
+    .ticket-view-button svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      fill: currentColor;
+    }
     .stat-box {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      min-width: 0;
+      position: absolute;
+      top: 84%;
+      width: 27%;
+      height: 8%;
+      display: grid;
+      place-items: center;
       color: #ece6db;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
     }
     .time-box {
-  grid-column: 1 / 2;
-  grid-row: 6;
-  align-self: start;
-  margin: -0.7rem 0 0 0.22rem;
-  padding-right: 0.2rem;
-}
-.weight-box {
-  grid-column: 3 / 4;
-  grid-row: 6;
-  align-self: start;
-  justify-self: end;
-  margin: -0.7rem 0.35rem 0 0;
-  padding-left: 0.1rem;
-}
-    .stat-icon {
-      width: 1.1rem;
-      height: 1.1rem;
-      color: #d9cfbd;
-      flex: 0 0 auto;
+      left: 20%;
+    }
+    .weight-box {
+      right: 20%;
     }
     .stat-copy {
-      display: grid;
-      min-width: 0;
-      gap: 0.08rem;
+      display: contents;
     }
     .stat-copy strong {
-      font-size: 0.7rem;
+      font-size: 0.9rem;
       line-height: 1;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .stat-label { display: none; }
     .back-layout {
       position: relative;
       padding: 1.15rem 1rem 1.1rem;
@@ -379,10 +417,14 @@ import { getTicketCardAssets } from '../card-asset-map';
       position: absolute;
       top: 7.4%;
       left: 7.6%;
+      width: 3.8rem;
+      height: 3.8rem;
+      display: grid;
+      place-items: center;
+      color: #f7f3ea;
       font-size: 1rem;
       font-weight: 700;
-      padding-right: 0.08rem;
-      padding-bottom: 0.08rem;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
     }
     .back-ticket-bar {
       position: absolute;
@@ -422,17 +464,14 @@ import { getTicketCardAssets } from '../card-asset-map';
       right: 10%;
       top: 50%;
       transform: translateY(-50%);
-      padding: 0;
       font-size: 0.8rem;
       font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
       color: #f4efe8;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
     }
     .comments-panel {
       position: absolute;
-      top: 43.5%;
+      top: 58%;
       left: 10.5%;
       right: 10.5%;
       bottom: 12.2%;
@@ -476,9 +515,122 @@ import { getTicketCardAssets } from '../card-asset-map';
       font-size: 0.92rem;
       line-height: 1.35;
     }
+    .ticket-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      background: rgba(4, 9, 16, 0.78);
+      backdrop-filter: blur(10px);
+    }
+    .ticket-modal {
+      width: min(100%, 68rem);
+      max-height: min(86vh, 54rem);
+      overflow: auto;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 1.5rem;
+      background: linear-gradient(180deg, rgba(18, 34, 51, 0.98), rgba(7, 14, 24, 0.98));
+      color: #edf5fb;
+      box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.5);
+    }
+    .ticket-modal-header {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .ticket-modal-eyebrow {
+      margin: 0 0 0.35rem;
+      color: #9fb6ca;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .ticket-modal h2,
+    .ticket-modal h3 {
+      margin: 0;
+    }
+    .ticket-modal h2 {
+      max-width: 52rem;
+      margin-bottom: 0.8rem;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      line-height: 1.15;
+    }
+    .ticket-modal-close {
+      padding: 0.7rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      background: #0f1d2d;
+      color: inherit;
+      cursor: pointer;
+    }
+    .ticket-modal-content {
+      display: grid;
+      grid-template-columns: minmax(0, 4fr) minmax(0, 1fr);
+      gap: 6px;
+    }
+    .ticket-detail-section {
+      padding: 1.1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .ticket-detail-section h3 {
+      margin-bottom: 0.8rem;
+      font-size: 0.95rem;
+    }
+    .ticket-description > div,
+    .ticket-comments ul {
+      max-height: 26rem;
+      overflow: auto;
+      color: #dbe7f1;
+      line-height: 1.5;
+    }
+    .ticket-description > div > :first-child,
+    .ticket-comments ul {
+      margin-top: 0;
+    }
+    .ticket-description > div > :last-child,
+    .ticket-comments ul {
+      margin-bottom: 0;
+    }
+    .ticket-comments ul {
+      padding-left: 1.2rem;
+    }
+    .ticket-comments li + li {
+      margin-top: 0.8rem;
+    }
+    .ticket-labels {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .ticket-labels span {
+      padding: 0.3rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(179, 162, 66, 0.9);
+      color: #352c23;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    .ticket-labels .ticket-empty,
+    .ticket-empty {
+      color: #9fb6ca;
+      background: transparent;
+      padding: 0;
+      font-weight: 400;
+    }
     @media (max-width: 960px) {
       .card-shell {
         --ticket-scale: 1;
+      }
+      .ticket-modal-content {
+        grid-template-columns: 1fr;
       }
     }
     @media (min-width: 1400px) and (min-height: 860px) {
@@ -496,6 +648,7 @@ export class TicketCardComponent implements OnInit {
   readonly ticketAssets = getTicketCardAssets();
   readonly frontArtMissing = signal(!this.ticketAssets.front);
   readonly backArtMissing = signal(!this.ticketAssets.back);
+  readonly detailsOpen = signal(false);
   readonly cardAriaLabel = computed(() =>
     this.showingBack() ? `Hide comments for ${this.ticket().title}` : `Show comments for ${this.ticket().title}`
   );
@@ -507,5 +660,14 @@ export class TicketCardComponent implements OnInit {
   toggleCardFace() {
     this.showingBack.update((value) => !value);
     this.rotationDegrees.update((value) => value + 180);
+  }
+
+  openDetails(event: Event) {
+    event.stopPropagation();
+    this.detailsOpen.set(true);
+  }
+
+  closeDetails() {
+    this.detailsOpen.set(false);
   }
 }

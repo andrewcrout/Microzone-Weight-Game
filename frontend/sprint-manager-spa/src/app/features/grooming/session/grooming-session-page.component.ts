@@ -144,7 +144,7 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
     .weight-deck-panel { display: grid; gap: 1rem; }
     .deck-stage {
       position: relative;
-      min-height: 24rem;
+      min-height: 27rem;
       border-radius: 1.5rem;
       overflow: hidden;
       background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
@@ -154,8 +154,8 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
     .deck-card {
       position: absolute;
       top: 1.2rem;
-      left: calc(50% - 7rem);
-      width: 14rem;
+      left: calc(50% - 7.75rem);
+      width: 15.5rem;
       transform-origin: center bottom;
       transition: transform 900ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 280ms ease;
     }
@@ -188,8 +188,8 @@ import { GroomingSession, SprintDetail, Ticket, WeightCard } from '../../../shar
     }
     @media (max-width: 960px) {
       .content { grid-template-columns: 1fr; }
-      .deck-stage { min-height: 21rem; }
-      .deck-card { width: min(14rem, calc(100% - 2rem)); left: calc(50% - min(7rem, calc((100% - 2rem) / 2))); }
+      .deck-stage { min-height: 27rem; }
+      .deck-card { width: min(15.5rem, calc(100% - 2rem)); left: calc(50% - min(7.75rem, calc((100% - 2rem) / 2))); }
       .deck-controls { justify-content: center; }
       .nav-button { width: 100%; height: auto; }
       .carousel-meta { justify-content: center; text-align: center; }

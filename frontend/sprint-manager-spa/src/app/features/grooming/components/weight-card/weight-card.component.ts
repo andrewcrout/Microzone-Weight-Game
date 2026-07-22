@@ -23,12 +23,7 @@ import { getWeightCardAssets } from '../card-asset-map';
 
           <div class="back-overlay"></div>
           <div class="back-copy">
-            <strong class="corner-value">{{ card().weightValue }}</strong>
-            <span class="top-bar-label">{{ card().timeLabel }}</span>
-            <div class="center-panel-copy">
-              <p>{{ card().estimatedTime }}</p>
-              <small>{{ card().element }} · {{ card().line }}</small>
-            </div>
+            <strong class="back-card-value">{{ card().weightValue }}</strong>
           </div>
         </section>
 
@@ -39,10 +34,12 @@ import { getWeightCardAssets } from '../card-asset-map';
 
           <div class="front-overlay"></div>
           <div class="front-copy">
-            <strong>{{ card().weightValue }}</strong>
-            <h4>{{ card().timeLabel }}</h4>
-            <p>{{ card().estimatedTime }}</p>
-            <small>{{ card().element }} · {{ card().line }}</small>
+            <strong class="front-card-value">{{ card().weightValue }}</strong>
+            <h4 class="front-title">{{ card().timeLabel }}</h4>
+            <div class="front-details">
+              <p>{{ card().estimatedTime }}</p>
+              <small>{{ card().element }} · {{ card().line }}</small>
+            </div>
           </div>
         </section>
       </div>
@@ -51,24 +48,29 @@ import { getWeightCardAssets } from '../card-asset-map';
   styles: [`
     :host {
       display: block;
-      width: 14rem;
+      --weight-card-base-width: 13rem;
+      --weight-card-base-height: 18.2rem;
+      --weight-card-scale: 1.1;
+      width: calc(var(--weight-card-base-width) * var(--weight-card-scale));
       max-width: 100%;
     }
     .weight-card {
       display: block;
-      width: 100%;
-      aspect-ratio: 5 / 7;
+      width: var(--weight-card-base-width);
+      height: var(--weight-card-base-height);
       padding: 0;
       border: 0;
       background: transparent;
       color: inherit;
       text-align: left;
       perspective: 1600px;
+      transform: scale(var(--weight-card-scale));
+      transform-origin: top left;
       transition: transform 220ms ease, filter 220ms ease;
     }
     .weight-card.clickable { cursor: pointer; }
     .weight-card:disabled { cursor: default; opacity: 1; }
-    .weight-card.clickable:hover { transform: translateY(-4px); }
+    .weight-card.clickable:hover { transform: translateY(-4px) scale(var(--weight-card-scale)); }
     .card-rotor {
       position: relative;
       width: 100%;
@@ -108,69 +110,69 @@ import { getWeightCardAssets } from '../card-asset-map';
       z-index: 1;
       color: #f5fbff;
     }
-    .front-copy {
-      display: grid;
-      height: 100%;
-      align-content: end;
-      gap: 0.35rem;
-      padding: 1rem 1rem 1.1rem;
-    }
+    .front-copy,
     .back-copy {
       height: 100%;
+      position: relative;
     }
-    .corner-value {
+    .back-card-value {
       position: absolute;
-      top: 2.8%;
-      left: 4.2%;
-      width: 2.2rem;
-      height: 2.2rem;
+      top: 38%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 3.4rem;
+      height: 3.4rem;
       display: grid;
       place-items: center;
       text-align: center;
+      font-size: 1.55rem;
       color: #f5fbff;
       line-height: 1;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.38);
     }
-    .top-bar-label {
+    .front-card-value {
       position: absolute;
-      top: 5.7%;
-      left: 21%;
-      right: 8%;
-      display: flex;
-      align-items: center;
+      top: 5.5%;
+      left: 7%;
       color: #f5fbff;
-      font-size: 0.84rem;
+      font-size: 1.55rem;
       font-weight: 700;
       text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
-    .center-panel-copy {
+    .front-title {
       position: absolute;
-      left: 11%;
-      right: 11%;
-      top: 69%;
-      bottom: 11%;
+      top: 8%;
+      left: 23%;
+      right: 8%;
+      margin: 0;
+      color: #f5fbff;
+      font-size: 0.88rem;
+      line-height: 1.08;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    }
+    .front-details {
+      position: absolute;
+      left: 9%;
+      right: 9%;
+      top: 68%;
+      bottom: 8%;
       display: grid;
       align-content: start;
       gap: 0.22rem;
       color: #eef5fb;
       text-align: left;
     }
-    .center-panel-copy p {
+    .front-details p {
       font-size: 0.82rem;
       font-weight: 700;
       color: #dde8f2;
     }
-    .center-panel-copy small {
+    .front-details small {
       font-size: 0.68rem;
       line-height: 1.25;
       color: #cddaea;
     }
     .selected .face { box-shadow: 0 0 0 2px rgba(255, 208, 140, 0.8), 0 1rem 2.4rem rgba(0, 0, 0, 0.32); }
-    .front-copy strong { font-size: 2rem; line-height: 1; }
-    .corner-value { font-size: 1.15rem; }
     h4, p, small { margin: 0; }
     small { color: #d0deea; }
   `]

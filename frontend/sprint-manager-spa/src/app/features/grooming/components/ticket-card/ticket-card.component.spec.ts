@@ -14,7 +14,7 @@ describe('TicketCardComponent', () => {
       id: 1,
       trelloCardId: '1',
       title: 'Demo ticket',
-      description: 'Hello **world**',
+      description: '1. Issue\n\nHello **world**',
       shortUrl: 'https://trello',
       systemName: 'PROMAN GENERAL',
       commentCount: 2,
@@ -30,8 +30,27 @@ describe('TicketCardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('renders title and weight', () => {
-    expect(fixture.nativeElement.textContent).toContain('Demo ticket');
-    expect(fixture.nativeElement.textContent).toContain('Weight: 4');
+  it('renders ticket content on the front and comments on the back', () => {
+    expect(fixture.nativeElement.querySelector('.weight-box strong')?.textContent.trim()).toBe('4');
+    expect(fixture.nativeElement.querySelector('.time-box strong')?.textContent.trim()).toBe('2');
+    expect(fixture.nativeElement.querySelector('.comment-badge')?.textContent.trim()).toBe('1');
+    expect(fixture.nativeElement.querySelector('.title-bar')?.textContent.trim()).toBe('Demo ticket');
+    expect(fixture.nativeElement.querySelector('.labels-panel')?.textContent.trim()).toBe('Sprint');
+    expect(fixture.nativeElement.querySelector('.description-copy')?.textContent).toContain('Issue');
+    expect(fixture.nativeElement.querySelector('.comments-panel')?.textContent).toContain('Looks good');
+  });
+
+  it('opens the full ticket detail dialog', () => {
+    fixture.nativeElement.querySelector<HTMLButtonElement>('.ticket-view-button')?.click();
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.ticket-modal')?.textContent).toContain('Demo ticket');
+    expect(fixture.nativeElement.querySelector('.ticket-modal')?.textContent).toContain('Sprint');
+    expect(fixture.nativeElement.querySelector('.ticket-modal')?.textContent).toContain('Looks good');
+
+    fixture.nativeElement.querySelector<HTMLButtonElement>('.ticket-modal-close')?.click();
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.ticket-modal')).toBeNull();
   });
 });
