@@ -1,0 +1,156 @@
+{
+  "communities": {
+    "0": [
+      "session_grooming_session_page_component_groomingsessionpagecomponent",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_beginvoteedit",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_cansubmitcurrentcard",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_gotosprinttickets",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_hasnextfacedownweightcard",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_isfaceupweightcard",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_ngondestroy",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_reveal",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_submitcurrentcard",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_toggleactionsmenu",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_weightcardtransform",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_weightcardzindex",
+      "session_grooming_session_page_component_ts_component",
+      "viewchild"
+    ],
+    "1": [
+      "components_card_asset_map",
+      "components_card_asset_map_cardassetset",
+      "components_card_asset_map_fallbackweightcardassets",
+      "components_card_asset_map_getweightcardassets",
+      "components_card_asset_map_normalizeelement",
+      "components_card_asset_map_ticketcardassets",
+      "components_card_asset_map_weightcardassetsbyelement",
+      "components_card_asset_map_weightcardassetsbyvalue",
+      "components_weight_card_weight_card_component",
+      "components_weight_card_weight_card_component_spec",
+      "components_weight_card_weight_card_component_ts_component",
+      "components_weight_card_weight_card_component_weightcardcomponent"
+    ],
+    "2": [
+      "lobby_grooming_lobby_page_component",
+      "lobby_grooming_lobby_page_component_groominglobbypagecomponent",
+      "lobby_grooming_lobby_page_component_groominglobbypagecomponent_constructor",
+      "lobby_grooming_lobby_page_component_groominglobbypagecomponent_iscurrentuserready",
+      "lobby_grooming_lobby_page_component_groominglobbypagecomponent_leavelobby",
+      "lobby_grooming_lobby_page_component_groominglobbypagecomponent_ngondestroy",
+      "lobby_grooming_lobby_page_component_groominglobbypagecomponent_recovermissingsession",
+      "lobby_grooming_lobby_page_component_groominglobbypagecomponent_refreshsession",
+      "lobby_grooming_lobby_page_component_groominglobbypagecomponent_setready",
+      "lobby_grooming_lobby_page_component_groominglobbypagecomponent_startsession",
+      "lobby_grooming_lobby_page_component_groominglobbypagecomponent_toggleready",
+      "lobby_grooming_lobby_page_component_ts_component"
+    ],
+    "3": [
+      "components_card_asset_map_getticketcardassets",
+      "components_ticket_card_ticket_card_component",
+      "components_ticket_card_ticket_card_component_spec",
+      "components_ticket_card_ticket_card_component_ticketcardcomponent",
+      "components_ticket_card_ticket_card_component_ticketcardcomponent_closedetails",
+      "components_ticket_card_ticket_card_component_ticketcardcomponent_ngoninit",
+      "components_ticket_card_ticket_card_component_ticketcardcomponent_opendetails",
+      "components_ticket_card_ticket_card_component_ticketcardcomponent_togglecardface",
+      "components_ticket_card_ticket_card_component_ts_component"
+    ],
+    "4": [
+      "components_countdown_countdown_component",
+      "components_countdown_countdown_component_countdowncomponent",
+      "components_countdown_countdown_component_ts_component",
+      "components_vote_reveal_vote_reveal_component",
+      "components_vote_reveal_vote_reveal_component_spec",
+      "components_vote_reveal_vote_reveal_component_ts_component",
+      "components_vote_reveal_vote_reveal_component_voterevealcomponent",
+      "session_grooming_session_page_component",
+      "session_grooming_session_page_component_rationale_518"
+    ],
+    "5": [
+      "session_grooming_session_page_component_groomingsessionpagecomponent_closeactionsmenu",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_confirmandcontinue",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_loadsession",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_loadsprint",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_marktoberemoved",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_recovermissingsession"
+    ],
+    "6": [
+      "session_grooming_session_page_component_groomingsessionpagecomponent_chooseweight",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_isweightcardclickable",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_nextweightcard",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_onweightcardpicked"
+    ],
+    "7": [
+      "session_grooming_session_page_component_groomingsessionpagecomponent_constructor",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_resetweightdeck",
+      "session_grooming_session_page_component_groomingsessionpagecomponent_startscene"
+    ]
+  },
+  "cohesion": {
+    "0": 0.14285714285714285,
+    "1": 0.21212121212121213,
+    "2": 0.22727272727272727,
+    "3": 0.25,
+    "4": 0.3055555555555556,
+    "5": 0.4,
+    "6": 0.5,
+    "7": 0.6666666666666666
+  },
+  "gods": [
+    {
+      "id": "session_grooming_session_page_component_groomingsessionpagecomponent",
+      "label": "GroomingSessionPageComponent",
+      "degree": 27
+    },
+    {
+      "id": "lobby_grooming_lobby_page_component_groominglobbypagecomponent",
+      "label": "GroomingLobbyPageComponent",
+      "degree": 11
+    },
+    {
+      "id": "components_ticket_card_ticket_card_component_ticketcardcomponent",
+      "label": "TicketCardComponent",
+      "degree": 8
+    },
+    {
+      "id": "components_vote_reveal_vote_reveal_component_voterevealcomponent",
+      "label": "VoteRevealComponent",
+      "degree": 4
+    },
+    {
+      "id": "components_weight_card_weight_card_component_weightcardcomponent",
+      "label": "WeightCardComponent",
+      "degree": 4
+    },
+    {
+      "id": "components_card_asset_map_getweightcardassets",
+      "label": "getWeightCardAssets()",
+      "degree": 3
+    },
+    {
+      "id": "components_countdown_countdown_component_countdowncomponent",
+      "label": "CountdownComponent",
+      "degree": 3
+    },
+    {
+      "id": "components_card_asset_map_getticketcardassets",
+      "label": "getTicketCardAssets()",
+      "degree": 2
+    },
+    {
+      "id": "components_card_asset_map_normalizeelement",
+      "label": "normalizeElement()",
+      "degree": 2
+    },
+    {
+      "id": "components_card_asset_map_cardassetset",
+      "label": "CardAssetSet",
+      "degree": 1
+    }
+  ],
+  "surprises": [],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
